@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+error_log
+
+# Backups
+*.bak
+*.swp
+*~
+
+# Node (si utilisé pour build)
+node_modules/
+npm-debug.log
+
+# Compiled
+*.min.css.map
+*.min.js.map
