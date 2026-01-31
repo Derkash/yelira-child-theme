@@ -524,7 +524,7 @@ add_filter('gettext', 'yelira_dashboard_welcome', 20, 3);
 
 /**
  * ============================================================================
- * HEADER - PERSONNALISATION
+ * HEADER - PERSONNALISATION (Style Neyssa Shop)
  * ============================================================================
  */
 
@@ -541,7 +541,89 @@ function yelira_register_menus() {
 add_action('after_setup_theme', 'yelira_register_menus');
 
 /**
- * Ajouter les icônes de réseaux sociaux dans le header
+ * Header personnalisé style Neyssa Shop
+ */
+function yelira_custom_header() {
+    ?>
+    <!-- Header Principal -->
+    <header class="yelira-header" id="yelira-header">
+        <div class="yelira-header-main">
+            <div class="yelira-container">
+                <div class="yelira-header-inner">
+                    <!-- Burger Menu Mobile -->
+                    <button class="yelira-burger" id="yelira-burger" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <!-- Logo -->
+                    <div class="yelira-logo">
+                        <a href="<?php echo home_url(); ?>">
+                            <span class="yelira-logo-text">YELIRA</span>
+                        </a>
+                    </div>
+
+                    <!-- Actions (Recherche, Compte, Panier) -->
+                    <div class="yelira-header-actions">
+                        <button class="yelira-search-toggle" id="yelira-search-toggle" aria-label="Rechercher">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                        </button>
+                        <a href="<?php echo wc_get_page_permalink('myaccount'); ?>" class="yelira-account" aria-label="Mon compte">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </a>
+                        <a href="<?php echo wc_get_cart_url(); ?>" class="yelira-cart" aria-label="Panier">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                            <span class="yelira-cart-count"><?php echo WC()->cart ? WC()->cart->get_cart_contents_count() : '0'; ?></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Catégories (Bandeau Horizontal) -->
+        <nav class="yelira-nav-categories" id="yelira-nav">
+            <div class="yelira-container">
+                <ul class="yelira-nav-list">
+                    <li class="yelira-nav-item highlight"><a href="/categorie-produit/soldes/">SOLDES</a></li>
+                    <li class="yelira-nav-item highlight"><a href="/categorie-produit/nouveautes/">NOUVEAUTÉS</a></li>
+                    <li class="yelira-nav-item"><a href="/categorie-produit/abayas/">ABAYAS</a></li>
+                    <li class="yelira-nav-item"><a href="/categorie-produit/hijabs/">HIJABS</a></li>
+                    <li class="yelira-nav-item"><a href="/categorie-produit/jilbabs/">JILBABS</a></li>
+                    <li class="yelira-nav-item"><a href="/categorie-produit/khimar/">KHIMAR</a></li>
+                    <li class="yelira-nav-item"><a href="/categorie-produit/robes/">ROBES</a></li>
+                    <li class="yelira-nav-item"><a href="/categorie-produit/burkini/">BURKINI</a></li>
+                    <li class="yelira-nav-item"><a href="/categorie-produit/pret-a-porter/">PRÊT-À-PORTER</a></li>
+                    <li class="yelira-nav-item"><a href="/categorie-produit/homme/">HOMME</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Barre de recherche -->
+        <div class="yelira-search-bar" id="yelira-search-bar">
+            <div class="yelira-container">
+                <form role="search" method="get" action="<?php echo home_url('/'); ?>">
+                    <input type="search" name="s" placeholder="Rechercher un produit..." autocomplete="off">
+                    <input type="hidden" name="post_type" value="product">
+                    <button type="submit" aria-label="Rechercher">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    </button>
+                </form>
+                <button class="yelira-search-close" id="yelira-search-close" aria-label="Fermer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay pour menu mobile -->
+    <div class="yelira-overlay" id="yelira-overlay"></div>
+    <?php
+}
+add_action('wp_body_open', 'yelira_custom_header', 2);
+
+/**
+ * Ajouter les icônes de réseaux sociaux
  */
 function yelira_social_icons() {
     ?>
@@ -558,6 +640,21 @@ function yelira_social_icons() {
     </div>
     <?php
 }
+
+/**
+ * Cacher le header par défaut de Blocksy
+ */
+function yelira_hide_default_header() {
+    ?>
+    <style>
+        header.ct-header,
+        .site-header:not(.yelira-header) {
+            display: none !important;
+        }
+    </style>
+    <?php
+}
+add_action('wp_head', 'yelira_hide_default_header', 1);
 
 /**
  * ============================================================================

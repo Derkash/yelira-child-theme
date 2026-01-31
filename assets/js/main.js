@@ -1,41 +1,117 @@
 /**
  * Yelira - Main JavaScript
- * @version 2.0.0
+ * @version 3.0.0
+ * Style Neyssa Shop
  */
 
 (function($) {
     'use strict';
 
-    /**
-     * Configuration
-     */
     const YELIRA = {
         init: function() {
-            this.promoBar();
+            this.mobileMenu();
+            this.searchBar();
+            this.stickyHeader();
             this.backToTop();
-            this.productHover();
             this.ajaxAddToCart();
             this.quantityButtons();
-            this.stickyHeader();
+            this.productHover();
         },
 
         /**
-         * Bandeau promo défilant
+         * Menu Mobile (Burger)
          */
-        promoBar: function() {
-            const promoBar = document.querySelector('.yelira-promo-bar');
-            if (!promoBar) return;
+        mobileMenu: function() {
+            const burger = document.getElementById('yelira-burger');
+            const nav = document.getElementById('yelira-nav');
+            const overlay = document.getElementById('yelira-overlay');
 
-            // Pause on hover
-            const inner = promoBar.querySelector('.yelira-promo-bar-inner');
-            if (inner) {
-                promoBar.addEventListener('mouseenter', () => {
-                    inner.style.animationPlayState = 'paused';
+            if (!burger || !nav) return;
+
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                nav.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+            });
+
+            overlay.addEventListener('click', () => {
+                burger.classList.remove('active');
+                nav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Fermer le menu quand on clique sur un lien
+            const navLinks = nav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        burger.classList.remove('active');
+                        nav.classList.remove('active');
+                        overlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
                 });
-                promoBar.addEventListener('mouseleave', () => {
-                    inner.style.animationPlayState = 'running';
+            });
+        },
+
+        /**
+         * Barre de recherche
+         */
+        searchBar: function() {
+            const searchToggle = document.getElementById('yelira-search-toggle');
+            const searchBar = document.getElementById('yelira-search-bar');
+            const searchClose = document.getElementById('yelira-search-close');
+
+            if (!searchToggle || !searchBar) return;
+
+            searchToggle.addEventListener('click', () => {
+                searchBar.classList.add('active');
+                const input = searchBar.querySelector('input[type="search"]');
+                if (input) input.focus();
+            });
+
+            if (searchClose) {
+                searchClose.addEventListener('click', () => {
+                    searchBar.classList.remove('active');
                 });
             }
+
+            // Fermer avec Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && searchBar.classList.contains('active')) {
+                    searchBar.classList.remove('active');
+                }
+            });
+        },
+
+        /**
+         * Header sticky avec effet show/hide au scroll
+         */
+        stickyHeader: function() {
+            const header = document.getElementById('yelira-header');
+            if (!header) return;
+
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.scrollY;
+
+                if (currentScroll > 150) {
+                    if (currentScroll > lastScroll) {
+                        // Scroll down - hide promo bar effet
+                        header.style.transform = 'translateY(-40px)';
+                    } else {
+                        // Scroll up - show all
+                        header.style.transform = 'translateY(0)';
+                    }
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+
+                lastScroll = currentScroll;
+            });
         },
 
         /**
@@ -48,45 +124,19 @@
             btn.setAttribute('aria-label', 'Retour en haut');
             document.body.appendChild(btn);
 
-            // Afficher/masquer le bouton
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
+                if (window.scrollY > 500) {
                     btn.classList.add('is-visible');
                 } else {
                     btn.classList.remove('is-visible');
                 }
             });
 
-            // Scroll vers le haut
             btn.addEventListener('click', () => {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
-            });
-        },
-
-        /**
-         * Effet hover sur les produits (image secondaire)
-         */
-        productHover: function() {
-            const products = document.querySelectorAll('.product');
-
-            products.forEach(product => {
-                const primaryImg = product.querySelector('.wp-post-image');
-                const secondaryImg = product.querySelector('.secondary-image');
-
-                if (primaryImg && secondaryImg) {
-                    product.addEventListener('mouseenter', () => {
-                        primaryImg.style.opacity = '0';
-                        secondaryImg.style.opacity = '1';
-                    });
-
-                    product.addEventListener('mouseleave', () => {
-                        primaryImg.style.opacity = '1';
-                        secondaryImg.style.opacity = '0';
-                    });
-                }
             });
         },
 
@@ -103,11 +153,9 @@
          * Afficher une notification
          */
         showNotification: function(message, type = 'success') {
-            // Supprimer les notifications existantes
             const existing = document.querySelector('.yelira-notification');
             if (existing) existing.remove();
 
-            // Créer la notification
             const notification = document.createElement('div');
             notification.className = 'yelira-notification';
             notification.innerHTML = `
@@ -116,10 +164,8 @@
             `;
             document.body.appendChild(notification);
 
-            // Afficher avec animation
             setTimeout(() => notification.classList.add('is-visible'), 10);
 
-            // Masquer après 3 secondes
             setTimeout(() => {
                 notification.classList.remove('is-visible');
                 setTimeout(() => notification.remove(), 300);
@@ -159,33 +205,26 @@
         },
 
         /**
-         * Header sticky
+         * Effet hover sur les produits (image secondaire)
          */
-        stickyHeader: function() {
-            const header = document.querySelector('.site-header');
-            if (!header) return;
+        productHover: function() {
+            const products = document.querySelectorAll('.product');
 
-            let lastScroll = 0;
-            const headerHeight = header.offsetHeight;
+            products.forEach(product => {
+                const primaryImg = product.querySelector('.wp-post-image');
+                const secondaryImg = product.querySelector('.secondary-image');
 
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.scrollY;
+                if (primaryImg && secondaryImg) {
+                    product.addEventListener('mouseenter', () => {
+                        primaryImg.style.opacity = '0';
+                        secondaryImg.style.opacity = '1';
+                    });
 
-                if (currentScroll > headerHeight) {
-                    header.classList.add('is-sticky');
-
-                    if (currentScroll > lastScroll) {
-                        // Scroll vers le bas
-                        header.classList.add('is-hidden');
-                    } else {
-                        // Scroll vers le haut
-                        header.classList.remove('is-hidden');
-                    }
-                } else {
-                    header.classList.remove('is-sticky', 'is-hidden');
+                    product.addEventListener('mouseleave', () => {
+                        primaryImg.style.opacity = '1';
+                        secondaryImg.style.opacity = '0';
+                    });
                 }
-
-                lastScroll = currentScroll;
             });
         }
     };
@@ -198,7 +237,7 @@
     });
 
     /**
-     * Réinitialiser après AJAX (ex: filtres de produits)
+     * Réinitialiser après AJAX
      */
     $(document).ajaxComplete(function() {
         YELIRA.productHover();
