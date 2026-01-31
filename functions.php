@@ -261,7 +261,7 @@ function yelira_promo_bar() {
         return;
     }
     ?>
-    <div class="yelira-promo-bar">
+    <div class="yelira-promo-bar" id="yelira-promo-bar">
         <div class="yelira-promo-bar-inner">
             <?php foreach ($messages as $message) : ?>
                 <span class="yelira-promo-bar-text"><?php echo esc_html($message); ?></span>
@@ -273,7 +273,121 @@ function yelira_promo_bar() {
     </div>
     <?php
 }
-add_action('blocksy:header:before', 'yelira_promo_bar');
+// Utiliser wp_body_open qui est plus universel
+add_action('wp_body_open', 'yelira_promo_bar', 1);
+
+/**
+ * Ajouter du CSS inline pour s'assurer que le bandeau s'affiche correctement
+ */
+function yelira_inline_critical_css() {
+    ?>
+    <style id="yelira-critical-css">
+        /* Bandeau promo - Critical CSS */
+        .yelira-promo-bar {
+            background-color: #1a1a1a !important;
+            color: #ffffff !important;
+            height: 40px !important;
+            display: flex !important;
+            align-items: center !important;
+            overflow: hidden !important;
+            position: relative !important;
+            z-index: 9999 !important;
+            width: 100% !important;
+        }
+        .yelira-promo-bar-inner {
+            display: flex !important;
+            animation: yelira-scroll 30s linear infinite !important;
+            white-space: nowrap !important;
+        }
+        .yelira-promo-bar-text {
+            display: inline-flex !important;
+            align-items: center !important;
+            padding: 0 50px !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+            color: #ffffff !important;
+        }
+        .yelira-promo-bar-text::after {
+            content: '✦' !important;
+            margin-left: 50px !important;
+            color: #c9a962 !important;
+        }
+        @keyframes yelira-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Override Blocksy pour les cartes produits */
+        .woocommerce ul.products li.product {
+            text-align: left !important;
+        }
+        .woocommerce ul.products li.product .yelira-product-category {
+            display: block !important;
+            font-size: 10px !important;
+            font-weight: 500 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+            color: #999999 !important;
+            margin: 15px 0 5px 0 !important;
+        }
+        .woocommerce ul.products li.product .yelira-product-sku {
+            display: block !important;
+            font-size: 10px !important;
+            color: #999999 !important;
+            margin-bottom: 8px !important;
+            font-family: monospace !important;
+        }
+        .woocommerce ul.products li.product .yelira-product-excerpt {
+            font-size: 12px !important;
+            color: #666666 !important;
+            line-height: 1.5 !important;
+            margin: 10px 0 !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+        }
+
+        /* Badges */
+        .yelira-badges {
+            position: absolute !important;
+            top: 10px !important;
+            left: 10px !important;
+            z-index: 5 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 5px !important;
+        }
+        .badge-new {
+            background-color: #c9a962 !important;
+            color: #1a1a1a !important;
+            font-size: 10px !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            padding: 5px 10px !important;
+        }
+        .badge-sale {
+            background-color: #e53935 !important;
+            color: #ffffff !important;
+            font-size: 10px !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            padding: 5px 10px !important;
+        }
+        .badge-low-stock {
+            background-color: #ff9800 !important;
+            color: #ffffff !important;
+            font-size: 10px !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            padding: 5px 10px !important;
+        }
+    </style>
+    <?php
+}
+add_action('wp_head', 'yelira_inline_critical_css', 999);
 
 /**
  * ============================================================================
