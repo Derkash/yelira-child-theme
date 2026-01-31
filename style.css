@@ -1,132 +1,281 @@
 /*
 Theme Name: Yelira Child Theme
 Theme URI: https://yelira.fr
-Description: Theme enfant personnalisé pour Yelira - Mode Modeste (Style Neyssa Shop)
+Description: Theme enfant personnalisé pour Yelira - Mode Modeste Élégante
 Author: Yelira
 Author URI: https://yelira.fr
 Template: blocksy
-Version: 3.0.0
+Version: 4.0.0
 License: GPL-2.0+
 Text Domain: yelira
 */
 
 /* ============================================================================
-   VARIABLES CSS - Palette Neyssa Shop
+   DESIGN SYSTEM - YELIRA LUXE
+   A refined, warm aesthetic for modest fashion
    ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
 :root {
-    /* Couleurs principales */
-    --yelira-black: #000000;
+    /* ═══════════════════════════════════════════════════════════════════════
+       COLOR PALETTE - Warm Earth Tones with Luxe Accents
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    /* Core */
+    --yelira-black: #0f0f0f;
+    --yelira-charcoal: #1a1a1a;
     --yelira-white: #ffffff;
-    --yelira-taupe: #997a6e;
+    --yelira-off-white: #fdfcfa;
+
+    /* Earth Tones */
+    --yelira-taupe: #9d8578;
+    --yelira-taupe-light: #b9a99e;
+    --yelira-taupe-dark: #7a6559;
+    --yelira-sand: #e8e0d5;
     --yelira-beige: #f5f1eb;
     --yelira-cream: #faf8f5;
-    --yelira-gold: #c9a962;
+    --yelira-linen: #f0ebe3;
 
-    /* Couleurs texte */
-    --yelira-text-dark: #1a1a1a;
-    --yelira-text-medium: #666666;
-    --yelira-text-light: #999999;
+    /* Accents */
+    --yelira-gold: #c4a77d;
+    --yelira-gold-light: #d4bc9a;
+    --yelira-gold-dark: #a68c63;
+    --yelira-rose: #d4a5a5;
+    --yelira-burgundy: #8b3a3a;
 
-    /* Couleurs accent */
-    --yelira-red: #c41e3a;
-    --yelira-success: #28a745;
+    /* Functional */
+    --yelira-red: #b82e2e;
+    --yelira-success: #4a7c59;
+    --yelira-warning: #c4943d;
 
-    /* Typographie */
-    --font-heading: 'Cormorant Garamond', Georgia, serif;
-    --font-body: 'Inter', -apple-system, sans-serif;
+    /* Text Hierarchy */
+    --text-primary: #1a1a1a;
+    --text-secondary: #5a5a5a;
+    --text-muted: #8a8a8a;
+    --text-light: #a0a0a0;
+    --text-inverse: #ffffff;
 
-    /* Espacements */
-    --container-width: 1400px;
-    --header-height: 60px;
+    /* ═══════════════════════════════════════════════════════════════════════
+       TYPOGRAPHY
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Type Scale */
+    --text-xs: 0.75rem;      /* 12px */
+    --text-sm: 0.8125rem;    /* 13px */
+    --text-base: 0.875rem;   /* 14px */
+    --text-md: 1rem;         /* 16px */
+    --text-lg: 1.125rem;     /* 18px */
+    --text-xl: 1.25rem;      /* 20px */
+    --text-2xl: 1.5rem;      /* 24px */
+    --text-3xl: 1.875rem;    /* 30px */
+    --text-4xl: 2.5rem;      /* 40px */
+    --text-5xl: 3.5rem;      /* 56px */
+    --text-6xl: 4.5rem;      /* 72px */
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       SPACING & LAYOUT
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    --container-max: 1440px;
+    --container-wide: 1200px;
+    --container-narrow: 900px;
+
+    --header-height: 70px;
     --nav-height: 50px;
-    --promo-height: 40px;
+    --promo-height: 38px;
+    --total-header: calc(var(--promo-height) + var(--header-height) + var(--nav-height));
+
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 6rem;
+    --space-5xl: 8rem;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       EFFECTS
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+    --shadow-xl: 0 20px 50px rgba(0,0,0,0.12);
+
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-elegant: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
 }
 
 /* ============================================================================
-   RESET & BASE
+   BASE RESET & GLOBAL STYLES
    ============================================================================ */
+
 *, *::before, *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
     font-family: var(--font-body);
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--yelira-text-dark);
-    background-color: var(--yelira-white);
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--text-primary);
+    background-color: var(--yelira-off-white);
     -webkit-font-smoothing: antialiased;
-    padding-top: calc(var(--promo-height) + var(--header-height) + var(--nav-height)) !important;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    padding-top: var(--total-header) !important;
+    overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+    background-color: var(--yelira-taupe);
+    color: var(--yelira-white);
+}
+
+/* Links */
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Focus States */
+:focus-visible {
+    outline: 2px solid var(--yelira-gold);
+    outline-offset: 2px;
 }
 
 /* ============================================================================
-   BANDEAU PROMO DÉFILANT
+   TYPOGRAPHY UTILITIES
    ============================================================================ */
+
+.font-display {
+    font-family: var(--font-display);
+}
+
+.font-body {
+    font-family: var(--font-body);
+}
+
+/* ============================================================================
+   PROMO BANNER - Elegant Scrolling Marquee
+   ============================================================================ */
+
 .yelira-promo-bar {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    background-color: var(--yelira-black) !important;
-    color: var(--yelira-white) !important;
     height: var(--promo-height) !important;
+    background: linear-gradient(90deg, var(--yelira-charcoal) 0%, #242424 50%, var(--yelira-charcoal) 100%) !important;
     display: flex !important;
     align-items: center !important;
     overflow: hidden !important;
-    z-index: 10000 !important;
+    z-index: 10001 !important;
+}
+
+.yelira-promo-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(196, 167, 125, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(196, 167, 125, 0.08) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .yelira-promo-bar-inner {
     display: flex !important;
-    animation: yelira-scroll 25s linear infinite !important;
+    animation: marquee-scroll 35s linear infinite !important;
     white-space: nowrap !important;
 }
 
 .yelira-promo-bar-text {
     display: inline-flex !important;
     align-items: center !important;
-    padding: 0 40px !important;
-    font-size: 11px !important;
+    gap: var(--space-xl) !important;
+    padding: 0 var(--space-3xl) !important;
+    font-size: var(--text-xs) !important;
     font-weight: 500 !important;
     text-transform: uppercase !important;
-    letter-spacing: 2px !important;
+    letter-spacing: 0.2em !important;
     color: var(--yelira-white) !important;
 }
 
 .yelira-promo-bar-text::after {
-    content: '✦' !important;
-    margin-left: 40px !important;
-    color: var(--yelira-taupe) !important;
+    content: '' !important;
+    width: 4px !important;
+    height: 4px !important;
+    background: var(--yelira-gold) !important;
+    border-radius: 50% !important;
+    opacity: 0.8 !important;
 }
 
-@keyframes yelira-scroll {
+@keyframes marquee-scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
 /* ============================================================================
-   HEADER PRINCIPAL
+   HEADER - Luxurious & Refined
    ============================================================================ */
+
 .yelira-header {
     position: fixed !important;
     top: var(--promo-height) !important;
     left: 0 !important;
     right: 0 !important;
     background: var(--yelira-white) !important;
-    z-index: 9999 !important;
-    border-bottom: 1px solid #eee !important;
+    z-index: 10000 !important;
+    transition: transform var(--transition-elegant), box-shadow var(--transition-base);
+}
+
+.yelira-header.scrolled {
+    box-shadow: var(--shadow-md);
 }
 
 .yelira-header-main {
     height: var(--header-height);
     display: flex;
     align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .yelira-container {
-    max-width: var(--container-width);
+    max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 var(--space-xl);
     width: 100%;
 }
 
@@ -135,6 +284,7 @@ body {
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    gap: var(--space-xl);
 }
 
 /* Burger Menu */
@@ -142,59 +292,85 @@ body {
     display: none;
     flex-direction: column;
     justify-content: center;
-    gap: 5px;
-    width: 24px;
-    height: 24px;
+    gap: 6px;
+    width: 28px;
+    height: 28px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
+    position: relative;
+    z-index: 10;
 }
 
 .yelira-burger span {
     display: block;
     width: 100%;
-    height: 2px;
+    height: 1.5px;
     background: var(--yelira-black);
-    transition: all 0.3s ease;
+    transition: all var(--transition-base);
+    transform-origin: center;
 }
 
 .yelira-burger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: translateY(7.5px) rotate(45deg);
 }
 
 .yelira-burger.active span:nth-child(2) {
     opacity: 0;
+    transform: scaleX(0);
 }
 
 .yelira-burger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: translateY(-7.5px) rotate(-45deg);
 }
 
 /* Logo */
 .yelira-logo {
     flex: 1;
     text-align: center;
+    position: relative;
 }
 
 .yelira-logo a {
+    display: inline-block;
     text-decoration: none;
+    position: relative;
 }
 
 .yelira-logo-text {
-    font-family: var(--font-heading);
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: 8px;
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 500;
+    letter-spacing: 0.35em;
     color: var(--yelira-black);
     text-transform: uppercase;
+    position: relative;
+}
+
+.yelira-logo-text::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 1px;
+    background: var(--yelira-gold);
+    opacity: 0;
+    transition: opacity var(--transition-base), width var(--transition-base);
+}
+
+.yelira-logo a:hover .yelira-logo-text::after {
+    opacity: 1;
+    width: 60px;
 }
 
 /* Header Actions */
 .yelira-header-actions {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: var(--space-lg);
 }
 
 .yelira-header-actions button,
@@ -202,47 +378,67 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 44px;
+    height: 44px;
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--yelira-black);
-    transition: color 0.3s ease;
+    color: var(--text-primary);
+    border-radius: 50%;
+    transition: all var(--transition-base);
+    position: relative;
 }
 
 .yelira-header-actions button:hover,
 .yelira-header-actions a:hover {
     color: var(--yelira-taupe);
+    background: var(--yelira-cream);
 }
 
+.yelira-header-actions svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 1.5;
+}
+
+/* Cart Badge */
 .yelira-cart {
     position: relative;
 }
 
 .yelira-cart-count {
     position: absolute;
-    top: -8px;
-    right: -8px;
-    background: var(--yelira-black);
+    top: 4px;
+    right: 4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    background: var(--yelira-charcoal);
     color: var(--yelira-white);
     font-size: 10px;
     font-weight: 600;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 9px;
+    transform: scale(1);
+    transition: transform var(--transition-fast);
+}
+
+.yelira-cart:hover .yelira-cart-count {
+    transform: scale(1.1);
 }
 
 /* ============================================================================
-   NAVIGATION CATÉGORIES (Bandeau Horizontal)
+   NAVIGATION - Elegant Category Bar
    ============================================================================ */
+
 .yelira-nav-categories {
     background: var(--yelira-white);
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--yelira-sand);
     height: var(--nav-height);
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .yelira-nav-list {
@@ -263,56 +459,73 @@ body {
     display: none;
 }
 
-.yelira-nav-item a {
-    display: block;
-    padding: 15px 18px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--yelira-text-dark);
-    white-space: nowrap;
-    transition: all 0.3s ease;
+.yelira-nav-item {
     position: relative;
 }
 
-.yelira-nav-item a::after {
+.yelira-nav-item a {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-lg);
+    height: var(--nav-height);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    transition: color var(--transition-base);
+    position: relative;
+}
+
+.yelira-nav-item a::before {
     content: '';
     position: absolute;
-    bottom: 10px;
-    left: 18px;
-    right: 18px;
-    height: 1px;
-    background: var(--yelira-black);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--yelira-taupe);
+    transition: width var(--transition-base);
 }
 
-.yelira-nav-item a:hover::after {
-    transform: scaleX(1);
+.yelira-nav-item a:hover {
+    color: var(--text-primary);
 }
 
+.yelira-nav-item a:hover::before {
+    width: calc(100% - var(--space-xl));
+}
+
+/* Highlight Items (Soldes, Nouveautés) */
 .yelira-nav-item.highlight a {
     color: var(--yelira-red);
+    font-weight: 600;
+}
+
+.yelira-nav-item.highlight a::before {
+    background: var(--yelira-red);
 }
 
 /* ============================================================================
-   BARRE DE RECHERCHE
+   SEARCH BAR - Full Width Overlay
    ============================================================================ */
+
 .yelira-search-bar {
     position: fixed;
     top: calc(var(--promo-height) + var(--header-height));
     left: 0;
     right: 0;
     background: var(--yelira-white);
-    padding: 20px 0;
-    border-bottom: 1px solid #eee;
-    z-index: 9998;
+    padding: var(--space-xl) 0;
+    border-bottom: 1px solid var(--yelira-sand);
+    z-index: 9999;
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all var(--transition-elegant);
 }
 
 .yelira-search-bar.active {
@@ -324,7 +537,8 @@ body {
 .yelira-search-bar .yelira-container {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: var(--space-lg);
+    max-width: var(--container-wide);
 }
 
 .yelira-search-bar form {
@@ -332,46 +546,76 @@ body {
     display: flex;
     align-items: center;
     background: var(--yelira-cream);
-    border-radius: 0;
+    border: 1px solid transparent;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.yelira-search-bar form:focus-within {
+    border-color: var(--yelira-taupe-light);
+    box-shadow: 0 0 0 3px rgba(157, 133, 120, 0.1);
 }
 
 .yelira-search-bar input[type="search"] {
     flex: 1;
-    padding: 15px 20px;
+    padding: var(--space-md) var(--space-xl);
     border: none;
     background: transparent;
-    font-size: 14px;
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    color: var(--text-primary);
     outline: none;
 }
 
-.yelira-search-bar button {
-    padding: 15px 20px;
+.yelira-search-bar input[type="search"]::placeholder {
+    color: var(--text-muted);
+}
+
+.yelira-search-bar button[type="submit"] {
+    padding: var(--space-md) var(--space-xl);
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--yelira-text-medium);
+    color: var(--text-muted);
+    transition: color var(--transition-base);
+}
+
+.yelira-search-bar button[type="submit"]:hover {
+    color: var(--yelira-taupe);
 }
 
 .yelira-search-close {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 10px;
-    color: var(--yelira-text-medium);
+    color: var(--text-muted);
+    border-radius: 50%;
+    transition: all var(--transition-base);
 }
 
-/* Overlay Mobile */
+.yelira-search-close:hover {
+    background: var(--yelira-cream);
+    color: var(--text-primary);
+}
+
+/* Mobile Overlay */
 .yelira-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 9990;
+    background: rgba(15, 15, 15, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9998;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all var(--transition-base);
 }
 
 .yelira-overlay.active {
@@ -380,14 +624,335 @@ body {
 }
 
 /* ============================================================================
-   CARTES PRODUITS - Style Neyssa Shop
+   HERO SECTION - Full Impact
    ============================================================================ */
+
+.yelira-hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--yelira-linen);
+    overflow: hidden;
+}
+
+.yelira-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 30% 20%, rgba(196, 167, 125, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(157, 133, 120, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.yelira-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-4xl) var(--space-xl);
+    max-width: 800px;
+}
+
+.yelira-hero-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--yelira-taupe);
+    margin-bottom: var(--space-lg);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.yelira-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-4xl), 8vw, var(--text-6xl));
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xl);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.yelira-hero h1 em {
+    font-style: italic;
+    color: var(--yelira-taupe);
+}
+
+.yelira-hero p {
+    font-size: var(--text-md);
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto var(--space-2xl);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.yelira-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================================
+   BUTTONS - Refined & Elegant
+   ============================================================================ */
+
+.btn,
+.yelira-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-2xl);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary,
+.yelira-btn-primary {
+    background: var(--yelira-charcoal);
+    color: var(--yelira-white);
+}
+
+.btn-primary::before,
+.yelira-btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--yelira-taupe);
+    transform: translateX(-100%);
+    transition: transform var(--transition-elegant);
+}
+
+.btn-primary:hover::before,
+.yelira-btn-primary:hover::before {
+    transform: translateX(0);
+}
+
+.btn-primary span,
+.yelira-btn-primary span {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-secondary,
+.yelira-btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--yelira-charcoal);
+}
+
+.btn-secondary:hover,
+.yelira-btn-secondary:hover {
+    background: var(--yelira-charcoal);
+    color: var(--yelira-white);
+}
+
+/* WooCommerce Button Overrides */
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+button[type="submit"],
+input[type="submit"],
+.wp-block-button__link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: var(--space-md) var(--space-2xl) !important;
+    background: var(--yelira-charcoal) !important;
+    color: var(--yelira-white) !important;
+    font-family: var(--font-body) !important;
+    font-size: var(--text-xs) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
+    transition: all var(--transition-base) !important;
+}
+
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover,
+.wp-block-button__link:hover {
+    background: var(--yelira-taupe) !important;
+}
+
+/* ============================================================================
+   SECTIONS - Layout Components
+   ============================================================================ */
+
+.yelira-section {
+    padding: var(--space-5xl) var(--space-xl);
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+.yelira-section-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+}
+
+.yelira-section-label {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--yelira-taupe);
+    margin-bottom: var(--space-sm);
+}
+
+.yelira-section-title {
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.01em;
+}
+
+.yelira-section-subtitle {
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ============================================================================
+   CATEGORY GRID - Visual Impact
+   ============================================================================ */
+
+.yelira-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}
+
+.yelira-category-card {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--yelira-beige);
+    cursor: pointer;
+}
+
+.yelira-category-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 15, 15, 0.7) 0%, rgba(15, 15, 15, 0.1) 50%, transparent 100%);
+    z-index: 1;
+    transition: opacity var(--transition-base);
+}
+
+.yelira-category-card:hover::before {
+    opacity: 0.8;
+}
+
+.yelira-category-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-elegant);
+}
+
+.yelira-category-card:hover img {
+    transform: scale(1.08);
+}
+
+.yelira-category-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-xl);
+    z-index: 2;
+    transform: translateY(10px);
+    transition: transform var(--transition-base);
+}
+
+.yelira-category-card:hover .yelira-category-card-content {
+    transform: translateY(0);
+}
+
+.yelira-category-card-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    color: var(--yelira-white);
+    margin-bottom: var(--space-xs);
+}
+
+.yelira-category-card-count {
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.yelira-category-card a {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+}
+
+/* ============================================================================
+   PRODUCT CARDS - Refined E-commerce
+   ============================================================================ */
+
 .woocommerce ul.products {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
-    gap: 30px !important;
+    gap: var(--space-xl) !important;
     margin: 0 !important;
     padding: 0 !important;
+    list-style: none !important;
 }
 
 .woocommerce ul.products li.product {
@@ -395,64 +960,84 @@ body {
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    text-align: center !important;
+    text-align: left !important;
     position: relative;
+    background: var(--yelira-white);
+    transition: box-shadow var(--transition-base);
 }
 
+.woocommerce ul.products li.product:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Product Image Container */
 .woocommerce ul.products li.product .woocommerce-loop-product__link {
     display: block;
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Image Produit */
+/* Product Images */
 .woocommerce ul.products li.product .attachment-woocommerce_thumbnail,
-.woocommerce ul.products li.product img {
+.woocommerce ul.products li.product img:not(.secondary-image) {
     width: 100% !important;
     height: auto !important;
     aspect-ratio: 3/4 !important;
     object-fit: cover !important;
-    transition: transform 0.5s ease !important;
+    transition: opacity var(--transition-slow) !important;
+    background: var(--yelira-cream);
 }
 
-.woocommerce ul.products li.product:hover img {
-    transform: scale(1.03);
-}
-
-/* Image secondaire hover */
+/* Secondary Image on Hover */
 .woocommerce ul.products li.product .secondary-image {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
     opacity: 0 !important;
-    transition: opacity 0.5s ease !important;
+    transition: opacity var(--transition-slow) !important;
+}
+
+.woocommerce ul.products li.product:hover .attachment-woocommerce_thumbnail,
+.woocommerce ul.products li.product:hover img:not(.secondary-image) {
+    opacity: 0;
 }
 
 .woocommerce ul.products li.product:hover .secondary-image {
     opacity: 1 !important;
 }
 
-/* Badges */
+/* Product Info */
+.woocommerce ul.products li.product .woocommerce-loop-product__link + * {
+    padding: var(--space-md);
+}
+
+/* Product Badges */
 .yelira-badges {
     position: absolute !important;
-    top: 10px !important;
-    left: 10px !important;
+    top: var(--space-md) !important;
+    left: var(--space-md) !important;
     z-index: 5 !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 5px !important;
+    gap: var(--space-xs) !important;
 }
 
-.badge-new, .badge-sale, .badge-low-stock {
-    padding: 6px 12px !important;
+.badge-new,
+.badge-sale,
+.badge-low-stock {
+    padding: var(--space-xs) var(--space-sm) !important;
     font-size: 10px !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
-    letter-spacing: 1px !important;
 }
 
 .badge-new {
-    background: var(--yelira-taupe) !important;
+    background: var(--yelira-gold) !important;
     color: var(--yelira-white) !important;
 }
 
@@ -462,76 +1047,101 @@ body {
 }
 
 .badge-low-stock {
-    background: var(--yelira-gold) !important;
-    color: var(--yelira-black) !important;
+    background: var(--yelira-warning) !important;
+    color: var(--yelira-white) !important;
 }
 
-/* Catégorie produit */
+/* Quick Actions */
+.yelira-quick-actions {
+    position: absolute;
+    bottom: var(--space-md);
+    left: var(--space-md);
+    right: var(--space-md);
+    display: flex;
+    gap: var(--space-sm);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all var(--transition-base);
+    z-index: 5;
+}
+
+.woocommerce ul.products li.product:hover .yelira-quick-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Product Category */
 .yelira-product-category {
     display: block !important;
-    font-size: 10px !important;
+    font-size: var(--text-xs) !important;
     font-weight: 500 !important;
+    letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
-    letter-spacing: 2px !important;
-    color: var(--yelira-text-light) !important;
-    margin: 15px 0 8px 0 !important;
+    color: var(--text-muted) !important;
+    margin: var(--space-md) var(--space-md) var(--space-xs) !important;
 }
 
-/* Titre produit */
+/* Product Title */
 .woocommerce ul.products li.product .woocommerce-loop-product__title {
-    font-family: var(--font-heading) !important;
-    font-size: 16px !important;
+    font-family: var(--font-display) !important;
+    font-size: var(--text-md) !important;
     font-weight: 500 !important;
-    color: var(--yelira-text-dark) !important;
-    margin: 0 0 8px 0 !important;
+    color: var(--text-primary) !important;
+    margin: 0 var(--space-md) var(--space-sm) !important;
     padding: 0 !important;
-    text-transform: capitalize !important;
+    line-height: 1.4 !important;
+    transition: color var(--transition-base) !important;
 }
 
-/* SKU */
-.yelira-product-sku {
-    display: none !important;
+.woocommerce ul.products li.product:hover .woocommerce-loop-product__title {
+    color: var(--yelira-taupe) !important;
 }
 
-/* Description courte */
+/* Hide SKU and Excerpt */
+.yelira-product-sku,
 .yelira-product-excerpt {
     display: none !important;
 }
 
-/* Prix */
+/* Product Price */
 .woocommerce ul.products li.product .price {
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    color: var(--yelira-text-dark) !important;
-    margin: 0 0 15px 0 !important;
+    font-family: var(--font-body) !important;
+    font-size: var(--text-base) !important;
+    font-weight: 500 !important;
+    color: var(--text-primary) !important;
+    margin: 0 var(--space-md) var(--space-md) !important;
 }
 
 .woocommerce ul.products li.product .price del {
-    color: var(--yelira-text-light) !important;
+    color: var(--text-muted) !important;
     font-weight: 400 !important;
-    margin-right: 8px !important;
+    margin-right: var(--space-sm) !important;
+    font-size: var(--text-sm) !important;
 }
 
 .woocommerce ul.products li.product .price ins {
     text-decoration: none !important;
     color: var(--yelira-red) !important;
+    font-weight: 600 !important;
 }
 
-/* Bouton Ajouter au panier */
+/* Add to Cart Button */
 .woocommerce ul.products li.product .button,
 .woocommerce ul.products li.product .add_to_cart_button {
-    display: inline-block !important;
-    background: var(--yelira-black) !important;
+    display: block !important;
+    width: calc(100% - var(--space-xl)) !important;
+    margin: 0 var(--space-md) var(--space-md) !important;
+    padding: var(--space-sm) var(--space-md) !important;
+    background: var(--yelira-charcoal) !important;
     color: var(--yelira-white) !important;
-    border: none !important;
-    padding: 12px 30px !important;
     font-size: 11px !important;
     font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
-    letter-spacing: 2px !important;
+    text-align: center !important;
+    border: none !important;
     cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    border-radius: 0 !important;
+    transition: all var(--transition-base) !important;
 }
 
 .woocommerce ul.products li.product .button:hover,
@@ -540,193 +1150,243 @@ body {
 }
 
 /* ============================================================================
-   PAGE BOUTIQUE
+   COLLECTION SECTIONS - Occasion-Based
    ============================================================================ */
-.woocommerce-page .woocommerce,
-.post-type-archive-product .woocommerce {
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 40px 20px;
+
+.yelira-collections {
+    padding: var(--space-5xl) 0;
+    background: var(--yelira-cream);
 }
 
-.woocommerce .woocommerce-result-count,
-.woocommerce .woocommerce-ordering {
-    margin-bottom: 30px !important;
-}
-
-/* ============================================================================
-   PAGE D'ACCUEIL - Hero Section
-   ============================================================================ */
-.yelira-hero {
-    position: relative;
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: var(--yelira-beige);
-    padding: 80px 20px;
-}
-
-.yelira-hero h1 {
-    font-family: var(--font-heading);
-    font-size: 56px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-    color: var(--yelira-black);
-}
-
-.yelira-hero p {
-    font-size: 16px;
-    color: var(--yelira-text-medium);
-    max-width: 500px;
-    margin: 0 auto 40px;
-}
-
-.yelira-hero .btn {
-    display: inline-block;
-    background: var(--yelira-black);
-    color: var(--yelira-white);
-    padding: 16px 50px;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    transition: all 0.3s ease;
-}
-
-.yelira-hero .btn:hover {
-    background: var(--yelira-taupe);
-}
-
-/* ============================================================================
-   SECTIONS
-   ============================================================================ */
-.yelira-section {
-    padding: 80px 20px;
-    max-width: var(--container-width);
-    margin: 0 auto;
-}
-
-.yelira-section-title {
-    font-family: var(--font-heading);
-    font-size: 32px;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 50px;
-    letter-spacing: 2px;
-}
-
-/* Grille Catégories */
-.yelira-categories-grid {
+.yelira-collections-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: var(--space-lg);
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
 }
 
-.yelira-category-card {
+.yelira-collection-card {
     position: relative;
-    aspect-ratio: 1/1;
+    height: 500px;
     overflow: hidden;
     background: var(--yelira-beige);
 }
 
-.yelira-category-card a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    color: var(--yelira-black);
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    transition: all 0.3s ease;
+.yelira-collection-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(15, 15, 15, 0.8) 100%);
+    z-index: 1;
 }
 
-.yelira-category-card:hover a {
-    background: rgba(0,0,0,0.05);
+.yelira-collection-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-elegant);
+}
+
+.yelira-collection-card:hover img {
+    transform: scale(1.05);
+}
+
+.yelira-collection-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-2xl);
+    z-index: 2;
+}
+
+.yelira-collection-label {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--yelira-gold-light);
+    margin-bottom: var(--space-sm);
+}
+
+.yelira-collection-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    color: var(--yelira-white);
+    margin-bottom: var(--space-md);
+    line-height: 1.2;
+}
+
+.yelira-collection-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--yelira-white);
+    text-decoration: none;
+    transition: gap var(--transition-base);
+}
+
+.yelira-collection-link:hover {
+    gap: var(--space-md);
+}
+
+.yelira-collection-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform var(--transition-base);
+}
+
+.yelira-collection-link:hover svg {
+    transform: translateX(4px);
 }
 
 /* ============================================================================
-   BOUTONS GLOBAUX
+   FEATURES BAR - Trust Signals
    ============================================================================ */
-.btn,
-button[type="submit"],
-input[type="submit"],
-.wp-block-button__link {
-    display: inline-block;
-    background: var(--yelira-black) !important;
-    color: var(--yelira-white) !important;
-    border: none !important;
-    padding: 14px 40px !important;
-    font-size: 12px !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 2px !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    border-radius: 0 !important;
-    text-decoration: none !important;
+
+.yelira-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    padding: var(--space-3xl) var(--space-xl);
+    max-width: var(--container-max);
+    margin: 0 auto;
+    border-top: 1px solid var(--yelira-sand);
+    border-bottom: 1px solid var(--yelira-sand);
 }
 
-.btn:hover,
-button[type="submit"]:hover,
-input[type="submit"]:hover,
-.wp-block-button__link:hover {
-    background: var(--yelira-taupe) !important;
+.yelira-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-sm);
+}
+
+.yelira-feature-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--yelira-taupe);
+}
+
+.yelira-feature-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke-width: 1.5;
+}
+
+.yelira-feature-title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.05em;
+}
+
+.yelira-feature-desc {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+/* ============================================================================
+   SHOP PAGE
+   ============================================================================ */
+
+.woocommerce-page .woocommerce,
+.post-type-archive-product .woocommerce {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-3xl) var(--space-xl);
+}
+
+.woocommerce .woocommerce-result-count {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin-bottom: var(--space-xl) !important;
+}
+
+.woocommerce .woocommerce-ordering {
+    margin-bottom: var(--space-xl) !important;
+}
+
+.woocommerce .woocommerce-ordering select {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--yelira-sand);
+    background: var(--yelira-white);
+    cursor: pointer;
 }
 
 /* ============================================================================
    BACK TO TOP
    ============================================================================ */
+
 .back-to-top {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: var(--yelira-black);
+    bottom: var(--space-xl);
+    right: var(--space-xl);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--yelira-charcoal);
     color: var(--yelira-white);
     border: none;
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transform: translateY(20px);
+    transition: all var(--transition-base);
     z-index: 9000;
-    font-size: 20px;
+    box-shadow: var(--shadow-md);
 }
 
 .back-to-top.is-visible {
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
 }
 
 .back-to-top:hover {
     background: var(--yelira-taupe);
+    transform: translateY(-4px);
+}
+
+.back-to-top svg {
+    width: 20px;
+    height: 20px;
 }
 
 /* ============================================================================
-   NOTIFICATION
+   NOTIFICATION TOAST
    ============================================================================ */
+
 .yelira-notification {
     position: fixed;
-    bottom: 30px;
+    bottom: var(--space-2xl);
     left: 50%;
     transform: translateX(-50%) translateY(100px);
-    background: var(--yelira-black);
+    background: var(--yelira-charcoal);
     color: var(--yelira-white);
-    padding: 15px 30px;
+    padding: var(--space-md) var(--space-xl);
     display: flex;
     align-items: center;
-    gap: 10px;
-    z-index: 10000;
+    gap: var(--space-sm);
+    z-index: 10002;
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: all var(--transition-elegant);
+    box-shadow: var(--shadow-xl);
 }
 
 .yelira-notification.is-visible {
@@ -734,32 +1394,346 @@ input[type="submit"]:hover,
     opacity: 1;
 }
 
+.yelira-notification .notification-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--yelira-success);
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+.yelira-notification .notification-message {
+    font-size: var(--text-sm);
+    font-weight: 500;
+}
+
 /* ============================================================================
-   RESPONSIVE
+   FOOTER - Sophisticated & Complete
    ============================================================================ */
+
+.yelira-footer {
+    background: var(--yelira-charcoal);
+    color: var(--yelira-white);
+    margin-top: var(--space-5xl);
+    position: relative;
+}
+
+.yelira-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--yelira-gold-dark), transparent);
+}
+
+/* Footer Newsletter */
+.yelira-footer-newsletter {
+    padding: var(--space-4xl) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+}
+
+.yelira-footer-newsletter h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    margin-bottom: var(--space-sm);
+}
+
+.yelira-footer-newsletter p {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: var(--space-xl);
+}
+
+.yelira-newsletter-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+    gap: var(--space-sm);
+}
+
+.yelira-newsletter-form input[type="email"] {
+    flex: 1;
+    padding: var(--space-md) var(--space-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--yelira-white);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    transition: all var(--transition-base);
+}
+
+.yelira-newsletter-form input[type="email"]::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.yelira-newsletter-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--yelira-gold);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.yelira-newsletter-form button {
+    padding: var(--space-md) var(--space-xl);
+    background: var(--yelira-gold);
+    color: var(--yelira-charcoal);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.yelira-newsletter-form button:hover {
+    background: var(--yelira-gold-light);
+}
+
+/* Footer Main Grid */
+.yelira-footer-top {
+    padding: var(--space-4xl) 0 var(--space-3xl);
+}
+
+.yelira-footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: var(--space-3xl);
+}
+
+.yelira-footer-col h4 {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    margin-bottom: var(--space-lg);
+    color: var(--yelira-white);
+}
+
+.yelira-footer-col p {
+    font-size: var(--text-sm);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: var(--space-lg);
+}
+
+/* Footer Logo Section */
+.yelira-footer-brand {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    margin-bottom: var(--space-md);
+    color: var(--yelira-white);
+}
+
+/* Footer Links */
+.yelira-footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.yelira-footer-links li {
+    margin-bottom: var(--space-sm);
+}
+
+.yelira-footer-links a {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: all var(--transition-base);
+    display: inline-block;
+}
+
+.yelira-footer-links a:hover {
+    color: var(--yelira-gold);
+    transform: translateX(4px);
+}
+
+/* Footer Contact */
+.yelira-footer-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.yelira-footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.yelira-footer-contact svg {
+    width: 18px;
+    height: 18px;
+    color: var(--yelira-gold);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.yelira-footer-contact a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.yelira-footer-contact a:hover {
+    color: var(--yelira-gold);
+}
+
+/* Footer Social */
+.yelira-footer-social {
+    margin-top: var(--space-lg);
+}
+
+.yelira-social-icons {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.yelira-social-icons a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--yelira-white);
+    transition: all var(--transition-base);
+}
+
+.yelira-social-icons a:hover {
+    background: var(--yelira-gold);
+    border-color: var(--yelira-gold);
+    color: var(--yelira-charcoal);
+}
+
+.yelira-social-icons svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Footer Payments */
+.yelira-footer-payments {
+    margin-top: var(--space-xl);
+}
+
+.yelira-footer-payments h5 {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: var(--space-sm);
+}
+
+.yelira-payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.payment-icon {
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Footer Bottom */
+.yelira-footer-bottom {
+    padding: var(--space-lg) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.yelira-footer-bottom p {
+    margin: 0;
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.yelira-footer-legal {
+    display: flex;
+    gap: var(--space-lg);
+}
+
+.yelira-footer-legal a {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.yelira-footer-legal a:hover {
+    color: var(--yelira-gold);
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
 @media (max-width: 1200px) {
     .woocommerce ul.products {
         grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    .yelira-collections-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .yelira-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-2xl);
     }
 }
 
 @media (max-width: 992px) {
     :root {
-        --header-height: 55px;
-        --nav-height: 45px;
+        --header-height: 60px;
+        --nav-height: 0px;
+    }
+
+    body {
+        padding-top: calc(var(--promo-height) + var(--header-height)) !important;
     }
 
     .woocommerce ul.products {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 20px !important;
+        gap: var(--space-md) !important;
     }
 
     .yelira-categories-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .yelira-collections-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .yelira-collection-card {
+        height: 400px;
+    }
+
+    .yelira-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .yelira-hero h1 {
-        font-size: 36px;
+        font-size: var(--text-4xl);
     }
 }
 
@@ -769,22 +1743,25 @@ input[type="submit"]:hover,
     }
 
     .yelira-logo-text {
-        font-size: 24px;
-        letter-spacing: 4px;
+        font-size: var(--text-xl);
+        letter-spacing: 0.2em;
     }
 
+    /* Mobile Navigation */
     .yelira-nav-categories {
         position: fixed;
         top: calc(var(--promo-height) + var(--header-height));
         left: 0;
-        width: 280px;
+        width: 300px;
         height: calc(100vh - var(--promo-height) - var(--header-height));
+        height: calc(100dvh - var(--promo-height) - var(--header-height));
         background: var(--yelira-white);
         transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        z-index: 9995;
-        border-right: 1px solid #eee;
+        transition: transform var(--transition-elegant);
+        z-index: 9997;
+        border-right: 1px solid var(--yelira-sand);
         overflow-y: auto;
+        display: block;
     }
 
     .yelira-nav-categories.active {
@@ -794,45 +1771,71 @@ input[type="submit"]:hover,
     .yelira-nav-list {
         flex-direction: column;
         align-items: stretch;
-        padding: 20px 0;
+        padding: var(--space-lg) 0;
     }
 
     .yelira-nav-item a {
         text-align: left;
-        padding: 15px 25px;
-        border-bottom: 1px solid #f0f0f0;
+        padding: var(--space-md) var(--space-xl);
+        height: auto;
+        border-bottom: 1px solid var(--yelira-cream);
+        font-size: var(--text-sm);
     }
 
-    .yelira-nav-item a::after {
+    .yelira-nav-item a::before {
         display: none;
     }
 
-    body {
-        padding-top: calc(var(--promo-height) + var(--header-height)) !important;
-    }
-
     .yelira-hero {
-        min-height: 50vh;
-        padding: 60px 20px;
+        min-height: 60vh;
+        padding: var(--space-3xl) var(--space-md);
     }
 
     .yelira-hero h1 {
-        font-size: 28px;
+        font-size: var(--text-3xl);
     }
 
     .yelira-section {
-        padding: 50px 15px;
+        padding: var(--space-3xl) var(--space-md);
     }
 
     .yelira-section-title {
-        font-size: 24px;
+        font-size: var(--text-2xl);
+    }
+
+    .yelira-footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .yelira-footer-social,
+    .yelira-social-icons {
+        justify-content: center;
+    }
+
+    .yelira-footer-contact li {
+        justify-content: center;
+    }
+
+    .yelira-payment-icons {
+        justify-content: center;
+    }
+
+    .yelira-footer-bottom {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+    }
+
+    .yelira-newsletter-form {
+        flex-direction: column;
     }
 }
 
 @media (max-width: 576px) {
     .woocommerce ul.products {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px !important;
+        gap: var(--space-sm) !important;
     }
 
     .yelira-categories-grid {
@@ -840,19 +1843,37 @@ input[type="submit"]:hover,
     }
 
     .yelira-header-actions {
-        gap: 15px;
+        gap: var(--space-sm);
+    }
+
+    .yelira-header-actions button,
+    .yelira-header-actions a {
+        width: 40px;
+        height: 40px;
+    }
+
+    .yelira-features {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
     }
 
     .woocommerce ul.products li.product .button,
     .woocommerce ul.products li.product .add_to_cart_button {
-        padding: 10px 20px !important;
+        padding: var(--space-xs) var(--space-sm) !important;
         font-size: 10px !important;
+    }
+
+    .yelira-promo-bar-text {
+        font-size: 10px !important;
+        letter-spacing: 0.15em !important;
+        padding: 0 var(--space-xl) !important;
     }
 }
 
 /* ============================================================================
-   CACHER ÉLÉMENTS BLOCKSY
+   HIDE BLOCKSY DEFAULT ELEMENTS
    ============================================================================ */
+
 header.ct-header,
 .site-header:not(.yelira-header),
 footer.ct-footer,
@@ -860,10 +1881,122 @@ footer.ct-footer,
     display: none !important;
 }
 
-/* Fix pour le contenu principal */
 .site-main,
 #primary,
 .content-area {
     padding-top: 0 !important;
     margin-top: 0 !important;
+}
+
+/* ============================================================================
+   WOOCOMMERCE ADDITIONAL OVERRIDES
+   ============================================================================ */
+
+.woocommerce .star-rating {
+    color: var(--yelira-gold) !important;
+}
+
+.woocommerce-message,
+.woocommerce-info {
+    border-top-color: var(--yelira-taupe) !important;
+}
+
+.woocommerce-message::before {
+    color: var(--yelira-taupe) !important;
+}
+
+/* Single Product Page */
+.woocommerce div.product .product_title {
+    font-family: var(--font-display) !important;
+    font-size: var(--text-3xl) !important;
+    font-weight: 400 !important;
+    color: var(--text-primary) !important;
+}
+
+.woocommerce div.product p.price {
+    font-size: var(--text-xl) !important;
+    font-weight: 500 !important;
+    color: var(--text-primary) !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+    color: var(--yelira-taupe) !important;
+}
+
+/* Quantity Buttons */
+.quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--yelira-sand);
+}
+
+.quantity input.qty {
+    width: 50px !important;
+    text-align: center;
+    border: none !important;
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    -moz-appearance: textfield;
+}
+
+.quantity input.qty::-webkit-outer-spin-button,
+.quantity input.qty::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.qty-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--yelira-cream);
+    border: none;
+    cursor: pointer;
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    transition: all var(--transition-base);
+}
+
+.qty-btn:hover {
+    background: var(--yelira-sand);
+    color: var(--text-primary);
+}
+
+/* ============================================================================
+   LOADING STATES & ANIMATIONS
+   ============================================================================ */
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.loading {
+    background: linear-gradient(90deg, var(--yelira-cream) 25%, var(--yelira-beige) 50%, var(--yelira-cream) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
+@media print {
+    .yelira-promo-bar,
+    .yelira-header,
+    .yelira-footer,
+    .back-to-top,
+    .yelira-notification {
+        display: none !important;
+    }
+
+    body {
+        padding-top: 0 !important;
+    }
 }

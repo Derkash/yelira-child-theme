@@ -38,10 +38,10 @@ function yelira_enqueue_styles() {
         YELIRA_VERSION
     );
 
-    // Google Fonts
+    // Google Fonts - Playfair Display + DM Sans
     wp_enqueue_style(
         'yelira-fonts',
-        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap',
         array(),
         null
     );
@@ -277,115 +277,11 @@ function yelira_promo_bar() {
 add_action('wp_body_open', 'yelira_promo_bar', 1);
 
 /**
- * Ajouter du CSS inline pour s'assurer que le bandeau s'affiche correctement
+ * Critical CSS is now handled entirely in style.css
+ * This function is kept for backwards compatibility but no longer outputs inline styles
  */
 function yelira_inline_critical_css() {
-    ?>
-    <style id="yelira-critical-css">
-        /* Bandeau promo - Critical CSS */
-        .yelira-promo-bar {
-            background-color: #1a1a1a !important;
-            color: #ffffff !important;
-            height: 40px !important;
-            display: flex !important;
-            align-items: center !important;
-            overflow: hidden !important;
-            position: relative !important;
-            z-index: 9999 !important;
-            width: 100% !important;
-        }
-        .yelira-promo-bar-inner {
-            display: flex !important;
-            animation: yelira-scroll 30s linear infinite !important;
-            white-space: nowrap !important;
-        }
-        .yelira-promo-bar-text {
-            display: inline-flex !important;
-            align-items: center !important;
-            padding: 0 50px !important;
-            font-size: 12px !important;
-            font-weight: 500 !important;
-            text-transform: uppercase !important;
-            letter-spacing: 1px !important;
-            color: #ffffff !important;
-        }
-        .yelira-promo-bar-text::after {
-            content: '✦' !important;
-            margin-left: 50px !important;
-            color: #c9a962 !important;
-        }
-        @keyframes yelira-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Override Blocksy pour les cartes produits */
-        .woocommerce ul.products li.product {
-            text-align: left !important;
-        }
-        .woocommerce ul.products li.product .yelira-product-category {
-            display: block !important;
-            font-size: 10px !important;
-            font-weight: 500 !important;
-            text-transform: uppercase !important;
-            letter-spacing: 1px !important;
-            color: #999999 !important;
-            margin: 15px 0 5px 0 !important;
-        }
-        .woocommerce ul.products li.product .yelira-product-sku {
-            display: block !important;
-            font-size: 10px !important;
-            color: #999999 !important;
-            margin-bottom: 8px !important;
-            font-family: monospace !important;
-        }
-        .woocommerce ul.products li.product .yelira-product-excerpt {
-            font-size: 12px !important;
-            color: #666666 !important;
-            line-height: 1.5 !important;
-            margin: 10px 0 !important;
-            display: -webkit-box !important;
-            -webkit-line-clamp: 2 !important;
-            -webkit-box-orient: vertical !important;
-            overflow: hidden !important;
-        }
-
-        /* Badges */
-        .yelira-badges {
-            position: absolute !important;
-            top: 10px !important;
-            left: 10px !important;
-            z-index: 5 !important;
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 5px !important;
-        }
-        .badge-new {
-            background-color: #c9a962 !important;
-            color: #1a1a1a !important;
-            font-size: 10px !important;
-            font-weight: 600 !important;
-            text-transform: uppercase !important;
-            padding: 5px 10px !important;
-        }
-        .badge-sale {
-            background-color: #e53935 !important;
-            color: #ffffff !important;
-            font-size: 10px !important;
-            font-weight: 600 !important;
-            text-transform: uppercase !important;
-            padding: 5px 10px !important;
-        }
-        .badge-low-stock {
-            background-color: #ff9800 !important;
-            color: #ffffff !important;
-            font-size: 10px !important;
-            font-weight: 600 !important;
-            text-transform: uppercase !important;
-            padding: 5px 10px !important;
-        }
-    </style>
-    <?php
+    // All critical CSS has been moved to the main stylesheet for better caching
 }
 add_action('wp_head', 'yelira_inline_critical_css', 999);
 
@@ -709,69 +605,80 @@ function yelira_register_sidebars() {
 add_action('widgets_init', 'yelira_register_sidebars');
 
 /**
- * Afficher le footer personnalisé
+ * Afficher le footer personnalisé - Design Luxe
  */
 function yelira_custom_footer() {
     ?>
     <footer class="yelira-footer">
+        <!-- Newsletter Section -->
+        <div class="yelira-footer-newsletter">
+            <div class="yelira-container">
+                <h3>Rejoignez la communauté Yelira</h3>
+                <p>Inscrivez-vous pour recevoir nos nouveautés et offres exclusives</p>
+                <form class="yelira-newsletter-form" action="#" method="post">
+                    <input type="email" name="email" placeholder="Votre adresse email" required>
+                    <button type="submit">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+
         <div class="yelira-footer-top">
             <div class="yelira-container">
                 <div class="yelira-footer-grid">
                     <!-- Colonne 1 - À propos -->
                     <div class="yelira-footer-col">
-                        <h4>À propos de Yelira</h4>
-                        <p>Yelira est votre boutique de référence pour la mode modeste et élégante. Nous sélectionnons avec soin des vêtements de qualité qui allient pudeur et tendance.</p>
+                        <div class="yelira-footer-brand">YELIRA</div>
+                        <p>Votre destination pour la mode modeste et élégante. Nous sélectionnons avec soin des pièces raffinées qui célèbrent la pudeur sans compromis sur le style.</p>
                         <div class="yelira-footer-social">
                             <?php yelira_social_icons(); ?>
                         </div>
                     </div>
 
-                    <!-- Colonne 2 - Catégories -->
+                    <!-- Colonne 2 - Collections -->
                     <div class="yelira-footer-col">
-                        <h4>Nos Collections</h4>
+                        <h4>Collections</h4>
                         <ul class="yelira-footer-links">
+                            <li><a href="/categorie-produit/nouveautes/">Nouveautés</a></li>
                             <li><a href="/categorie-produit/abayas/">Abayas</a></li>
                             <li><a href="/categorie-produit/hijabs/">Hijabs</a></li>
                             <li><a href="/categorie-produit/jilbabs/">Jilbabs</a></li>
                             <li><a href="/categorie-produit/khimar/">Khimar</a></li>
                             <li><a href="/categorie-produit/robes/">Robes</a></li>
-                            <li><a href="/categorie-produit/pret-a-porter/">Prêt-à-porter</a></li>
                         </ul>
                     </div>
 
-                    <!-- Colonne 3 - Informations -->
+                    <!-- Colonne 3 - Aide -->
                     <div class="yelira-footer-col">
-                        <h4>Informations</h4>
+                        <h4>Aide & Info</h4>
                         <ul class="yelira-footer-links">
-                            <li><a href="/a-propos/">À propos</a></li>
                             <li><a href="/livraison/">Livraison</a></li>
                             <li><a href="/retours-echanges/">Retours & Échanges</a></li>
-                            <li><a href="/mentions-legales/">Mentions légales</a></li>
-                            <li><a href="/cgv/">CGV</a></li>
+                            <li><a href="/guide-des-tailles/">Guide des tailles</a></li>
+                            <li><a href="/faq/">FAQ</a></li>
                             <li><a href="/contact/">Contact</a></li>
                         </ul>
                     </div>
 
                     <!-- Colonne 4 - Contact -->
                     <div class="yelira-footer-col">
-                        <h4>Besoin d'aide ?</h4>
+                        <h4>Contact</h4>
                         <ul class="yelira-footer-contact">
                             <li>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                                 <a href="mailto:contact@yelira.fr">contact@yelira.fr</a>
                             </li>
                             <li>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                                 <span>Service client 7j/7</span>
                             </li>
                         </ul>
                         <div class="yelira-footer-payments">
                             <h5>Paiement sécurisé</h5>
                             <div class="yelira-payment-icons">
-                                <span class="payment-icon">💳 CB</span>
                                 <span class="payment-icon">Visa</span>
                                 <span class="payment-icon">Mastercard</span>
                                 <span class="payment-icon">PayPal</span>
+                                <span class="payment-icon">CB</span>
                             </div>
                         </div>
                     </div>
@@ -781,7 +688,12 @@ function yelira_custom_footer() {
 
         <div class="yelira-footer-bottom">
             <div class="yelira-container">
-                <p>&copy; <?php echo date('Y'); ?> Yelira - Mode Modeste. Tous droits réservés.</p>
+                <p>&copy; <?php echo date('Y'); ?> Yelira. Tous droits réservés.</p>
+                <div class="yelira-footer-legal">
+                    <a href="/mentions-legales/">Mentions légales</a>
+                    <a href="/cgv/">CGV</a>
+                    <a href="/confidentialite/">Confidentialité</a>
+                </div>
             </div>
         </div>
     </footer>
@@ -790,165 +702,10 @@ function yelira_custom_footer() {
 add_action('wp_footer', 'yelira_custom_footer', 5);
 
 /**
- * Ajouter CSS pour le footer personnalisé
+ * Footer styles are now in the main stylesheet
+ * This function is kept for backwards compatibility
  */
 function yelira_footer_styles() {
-    ?>
-    <style id="yelira-footer-css">
-        /* Footer Yelira */
-        .yelira-footer {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            margin-top: 60px;
-        }
-        .yelira-footer-top {
-            padding: 60px 0 40px;
-        }
-        .yelira-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .yelira-footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-        }
-        .yelira-footer-col h4 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #c9a962;
-        }
-        .yelira-footer-col p {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #aaaaaa;
-        }
-        .yelira-footer-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .yelira-footer-links li {
-            margin-bottom: 10px;
-        }
-        .yelira-footer-links a {
-            color: #aaaaaa;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-        .yelira-footer-links a:hover {
-            color: #c9a962;
-        }
-        .yelira-footer-contact {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .yelira-footer-contact li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: #aaaaaa;
-        }
-        .yelira-footer-contact svg {
-            color: #c9a962;
-            flex-shrink: 0;
-        }
-        .yelira-footer-contact a {
-            color: #aaaaaa;
-            text-decoration: none;
-        }
-        .yelira-footer-contact a:hover {
-            color: #c9a962;
-        }
-        .yelira-footer-social {
-            margin-top: 20px;
-        }
-        .yelira-social-icons {
-            display: flex;
-            gap: 15px;
-        }
-        .yelira-social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: #2a2a2a;
-            border-radius: 50%;
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
-        .yelira-social-icons a:hover {
-            background-color: #c9a962;
-            color: #1a1a1a;
-        }
-        .yelira-footer-payments {
-            margin-top: 25px;
-        }
-        .yelira-footer-payments h5 {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #888888;
-            margin-bottom: 10px;
-        }
-        .yelira-payment-icons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .payment-icon {
-            background-color: #2a2a2a;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 11px;
-            color: #aaaaaa;
-        }
-        .yelira-footer-bottom {
-            border-top: 1px solid #2a2a2a;
-            padding: 20px 0;
-            text-align: center;
-        }
-        .yelira-footer-bottom p {
-            margin: 0;
-            font-size: 13px;
-            color: #666666;
-        }
-
-        /* Responsive Footer */
-        @media (max-width: 992px) {
-            .yelira-footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 576px) {
-            .yelira-footer-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .yelira-footer-social,
-            .yelira-social-icons,
-            .yelira-payment-icons {
-                justify-content: center;
-            }
-            .yelira-footer-contact li {
-                justify-content: center;
-            }
-        }
-
-        /* Cacher le footer par défaut de Blocksy */
-        footer.ct-footer,
-        .site-footer:not(.yelira-footer) {
-            display: none !important;
-        }
-    </style>
-    <?php
+    // All footer CSS has been moved to style.css
 }
 add_action('wp_head', 'yelira_footer_styles', 999);
