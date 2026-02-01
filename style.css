@@ -1051,11 +1051,26 @@ input[type="submit"]:hover,
     color: var(--yelira-white) !important;
 }
 
-/* Hide default WooCommerce sale badge (we use custom badges) */
+/* Hide default WooCommerce & Blocksy sale badges (we use custom badges) */
 .woocommerce ul.products li.product .onsale,
 .woocommerce span.onsale,
-.onsale {
+.onsale,
+span.onsale,
+span.onsale[data-shape],
+span.onsale[data-shape="type-2"],
+figure .onsale,
+figure > .onsale,
+.product figure .onsale,
+li.product .onsale,
+li.product figure span.onsale {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
 }
 
 /* Quick Actions */
