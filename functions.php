@@ -149,12 +149,14 @@ function yelira_custom_badges() {
 
     echo '<div class="yelira-badges">';
 
-    // Badge "Nouveau" (produits de moins de 30 jours)
-    $post_date = get_the_date('Y-m-d', $product->get_id());
-    $days_ago = (time() - strtotime($post_date)) / DAY_IN_SECONDS;
+    // Badge "Nouveau" (produits de moins de 30 jours) - seulement si pas en promo
+    if (!$product->is_on_sale()) {
+        $post_date = get_the_date('Y-m-d', $product->get_id());
+        $days_ago = (time() - strtotime($post_date)) / DAY_IN_SECONDS;
 
-    if ($days_ago < 30) {
-        echo '<span class="badge-new">Nouveau</span>';
+        if ($days_ago < 30) {
+            echo '<span class="badge-new">Nouveau</span>';
+        }
     }
 
     // Badge "Soldes" (si en promotion)
