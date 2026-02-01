@@ -143,6 +143,10 @@ add_action('woocommerce_after_shop_loop_item_title', 'yelira_show_product_excerp
 function yelira_custom_badges() {
     global $product;
 
+    if (!$product || !is_a($product, 'WC_Product')) {
+        return;
+    }
+
     echo '<div class="yelira-badges">';
 
     // Badge "Nouveau" (produits de moins de 30 jours)
@@ -155,10 +159,16 @@ function yelira_custom_badges() {
 
     // Badge "Soldes" (si en promotion)
     if ($product->is_on_sale()) {
-        $regular_price = (float) $product->get_regular_price();
-        $sale_price = (float) $product->get_sale_price();
+        // Pour les produits variables, utiliser le prix min
+        if ($product->is_type('variable')) {
+            $regular_price = (float) $product->get_variation_regular_price('min');
+            $sale_price = (float) $product->get_variation_sale_price('min');
+        } else {
+            $regular_price = (float) $product->get_regular_price();
+            $sale_price = (float) $product->get_sale_price();
+        }
 
-        if ($regular_price > 0) {
+        if ($regular_price > 0 && $sale_price > 0) {
             $percentage = round((($regular_price - $sale_price) / $regular_price) * 100);
             echo '<span class="badge-sale">-' . $percentage . '%</span>';
         }
@@ -300,6 +310,15 @@ function yelira_product_schema() {
     }
 
     global $product;
+
+    // Vérifier que le produit existe
+    if (!$product || !is_a($product, 'WC_Product')) {
+        $product = wc_get_product(get_the_ID());
+    }
+
+    if (!$product) {
+        return;
+    }
 
     $schema = array(
         '@context' => 'https://schema.org/',
