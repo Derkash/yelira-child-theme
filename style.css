@@ -5,222 +5,131 @@ Description: Theme enfant personnalisé pour Yelira - Mode Modeste Élégante
 Author: Yelira
 Author URI: https://yelira.fr
 Template: blocksy
-Version: 4.0.0
+Version: 5.0.0
 License: GPL-2.0+
 Text Domain: yelira
 */
 
 /* ============================================================================
-   DESIGN SYSTEM - YELIRA LUXE
-   A refined, warm aesthetic for modest fashion
+   YELIRA 5.0 - PREMIUM FASHION E-COMMERCE
+   Designed for mobile-first modest fashion experience
    ============================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CSS CUSTOM PROPERTIES - Design Tokens
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 :root {
-    /* ═══════════════════════════════════════════════════════════════════════
-       COLOR PALETTE - Warm Earth Tones with Luxe Accents
-       ═══════════════════════════════════════════════════════════════════════ */
+    /* Colors - Warm Neutral Palette */
+    --color-black: #0a0a0a;
+    --color-charcoal: #1c1c1c;
+    --color-graphite: #2d2d2d;
+    --color-slate: #4a4a4a;
+    --color-gray: #767676;
+    --color-silver: #a3a3a3;
+    --color-mist: #d4d4d4;
+    --color-cloud: #e8e8e8;
+    --color-snow: #f5f5f5;
+    --color-white: #ffffff;
 
-    /* Core */
-    --yelira-black: #0f0f0f;
-    --yelira-charcoal: #1a1a1a;
-    --yelira-white: #ffffff;
-    --yelira-off-white: #fdfcfa;
+    /* Brand Colors */
+    --color-taupe: #8b7355;
+    --color-taupe-light: #a89078;
+    --color-taupe-dark: #6d5a44;
+    --color-sand: #c4b5a0;
+    --color-cream: #f7f4ef;
+    --color-ivory: #faf9f7;
+    --color-gold: #b8956c;
+    --color-rose: #c9a8a8;
 
-    /* Earth Tones */
-    --yelira-taupe: #9d8578;
-    --yelira-taupe-light: #b9a99e;
-    --yelira-taupe-dark: #7a6559;
-    --yelira-sand: #e8e0d5;
-    --yelira-beige: #f5f1eb;
-    --yelira-cream: #faf8f5;
-    --yelira-linen: #f0ebe3;
+    /* Semantic Colors */
+    --color-error: #c53030;
+    --color-success: #276749;
+    --color-sale: #9b2c2c;
+    --color-new: #2b6cb0;
 
-    /* Accents */
-    --yelira-gold: #c4a77d;
-    --yelira-gold-light: #d4bc9a;
-    --yelira-gold-dark: #a68c63;
-    --yelira-rose: #d4a5a5;
-    --yelira-burgundy: #8b3a3a;
+    /* Typography */
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-    /* Functional */
-    --yelira-red: #b82e2e;
-    --yelira-success: #4a7c59;
-    --yelira-warning: #c4943d;
+    /* Font Sizes - Fluid Scale */
+    --text-xs: clamp(0.625rem, 0.6rem + 0.125vw, 0.75rem);
+    --text-sm: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --text-base: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+    --text-lg: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --text-xl: clamp(1.125rem, 1rem + 0.625vw, 1.375rem);
+    --text-2xl: clamp(1.375rem, 1.2rem + 0.875vw, 1.75rem);
+    --text-3xl: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
+    --text-4xl: clamp(2.25rem, 1.875rem + 1.875vw, 3.5rem);
+    --text-5xl: clamp(3rem, 2.5rem + 2.5vw, 5rem);
 
-    /* Text Hierarchy */
-    --text-primary: #1a1a1a;
-    --text-secondary: #5a5a5a;
-    --text-muted: #8a8a8a;
-    --text-light: #a0a0a0;
-    --text-inverse: #ffffff;
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
 
-    /* ═══════════════════════════════════════════════════════════════════════
-       TYPOGRAPHY
-       ═══════════════════════════════════════════════════════════════════════ */
+    /* Layout */
+    --header-height: 60px;
+    --nav-height: 44px;
+    --promo-height: 36px;
+    --mobile-nav-height: 56px;
+    --container-max: 1400px;
+    --container-padding: clamp(16px, 4vw, 48px);
 
-    --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
-    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Effects */
+    --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.06), 0 4px 8px rgba(0,0,0,0.04);
+    --shadow-xl: 0 16px 48px rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.04);
+    --shadow-glow: 0 0 0 1px rgba(139,115,85,0.1), 0 4px 16px rgba(139,115,85,0.15);
 
-    /* Type Scale */
-    --text-xs: 0.75rem;      /* 12px */
-    --text-sm: 0.8125rem;    /* 13px */
-    --text-base: 0.875rem;   /* 14px */
-    --text-md: 1rem;         /* 16px */
-    --text-lg: 1.125rem;     /* 18px */
-    --text-xl: 1.25rem;      /* 20px */
-    --text-2xl: 1.5rem;      /* 24px */
-    --text-3xl: 1.875rem;    /* 30px */
-    --text-4xl: 2.5rem;      /* 40px */
-    --text-5xl: 3.5rem;      /* 56px */
-    --text-6xl: 4.5rem;      /* 72px */
-
-    /* ═══════════════════════════════════════════════════════════════════════
-       SPACING & LAYOUT
-       ═══════════════════════════════════════════════════════════════════════ */
-
-    --container-max: 1440px;
-    --container-wide: 1200px;
-    --container-narrow: 900px;
-
-    --header-height: 70px;
-    --nav-height: 50px;
-    --promo-height: 38px;
-    --total-header: calc(var(--promo-height) + var(--header-height) + var(--nav-height));
-
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-    --space-2xl: 3rem;
-    --space-3xl: 4rem;
-    --space-4xl: 6rem;
-    --space-5xl: 8rem;
-
-    /* ═══════════════════════════════════════════════════════════════════════
-       EFFECTS
-       ═══════════════════════════════════════════════════════════════════════ */
-
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
-    --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
-    --shadow-xl: 0 20px 50px rgba(0,0,0,0.12);
-
-    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-elegant: 600ms cubic-bezier(0.16, 1, 0.3, 1);
-
-    --radius-sm: 2px;
-    --radius-md: 4px;
-    --radius-lg: 8px;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
     --radius-xl: 16px;
+    --radius-2xl: 24px;
     --radius-full: 9999px;
+
+    /* Transitions */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    --duration-fast: 150ms;
+    --duration-base: 250ms;
+    --duration-slow: 400ms;
+    --duration-slower: 600ms;
 }
 
-/* ============================================================================
-   BLOCKSY OVERRIDE - FORCER NOS ÉLÉMENTS
-   Priority: !important sur tout pour surpasser Blocksy
-   ============================================================================ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCKSY RESET - Hide parent theme elements
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-/* MASQUER COMPLÈTEMENT LE HEADER/FOOTER BLOCKSY */
-header[data-id],
-header.ct-header,
-.ct-header,
-.ct-header-container,
-header.site-header:not(.yelira-header),
-.site-header:not(.yelira-header),
-[class*="ct-header"],
-.ct-drawer-canvas,
-footer.ct-footer,
-.ct-footer,
-footer[data-id],
-.ct-above-footer,
-.ct-prefooter,
-[class*="ct-footer"],
-.ct-offcanvas,
-.ct-panel {
+header[data-id], header.ct-header, .ct-header, .ct-header-container,
+.site-header:not(.yelira-header), [class*="ct-header"],
+footer.ct-footer, .ct-footer, footer[data-id], [class*="ct-footer"],
+.ct-drawer-canvas, .ct-offcanvas, .ct-panel, .ct-above-footer, .ct-prefooter {
     display: none !important;
     visibility: hidden !important;
-    opacity: 0 !important;
     height: 0 !important;
     overflow: hidden !important;
-    position: absolute !important;
-    pointer-events: none !important;
 }
 
-/* FORCER L'AFFICHAGE DE NOS ÉLÉMENTS YELIRA */
-.yelira-promo-bar,
-.yelira-header,
-.yelira-footer,
-.yelira-mobile-nav,
-.yelira-sticky-atc,
-.yelira-mobile-search,
-.yelira-categories-modal {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* Spécifiquement pour la navigation mobile - afficher sur mobile seulement */
-.yelira-mobile-nav {
-    display: none !important;
-}
-
-@media (max-width: 768px) {
-    .yelira-mobile-nav {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-}
-
-/* Spécifiquement pour le sticky ATC - caché par défaut */
-.yelira-sticky-atc {
-    display: none !important;
-}
-
-.yelira-sticky-atc.visible {
-    display: block !important;
-}
-
-/* Search et modal - cachés par défaut, affichés quand .active */
-.yelira-mobile-search,
-.yelira-categories-modal {
-    display: flex !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-}
-
-.yelira-mobile-search.active,
-.yelira-categories-modal.active {
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-}
-
-/* Reset body padding de Blocksy */
-body.blocksy-theme,
-body {
-    margin-top: 0 !important;
-}
-
-/* Assurer que le contenu principal a le bon padding */
-main,
-.site-main,
-.ct-container,
-#main,
-.main-content {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-}
-
-/* ============================================================================
-   BASE RESET & GLOBAL STYLES
-   ============================================================================ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -231,134 +140,141 @@ main,
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
     font-family: var(--font-body);
     font-size: var(--text-base);
     font-weight: 400;
-    line-height: 1.65;
-    color: var(--text-primary);
-    background-color: var(--yelira-off-white);
+    line-height: 1.6;
+    color: var(--color-charcoal);
+    background: var(--color-ivory);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    padding-top: var(--total-header) !important;
     overflow-x: hidden;
+    padding-top: calc(var(--promo-height) + var(--header-height) + var(--nav-height));
 }
 
-/* Selection */
+@media (max-width: 768px) {
+    body {
+        padding-top: calc(var(--promo-height) + var(--header-height));
+        padding-bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom));
+    }
+}
+
 ::selection {
-    background-color: var(--yelira-taupe);
-    color: var(--yelira-white);
+    background: var(--color-taupe);
+    color: var(--color-white);
 }
 
-/* Links */
 a {
     color: inherit;
     text-decoration: none;
-    transition: color var(--transition-base);
 }
 
-/* Images */
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* Focus States */
-:focus-visible {
-    outline: 2px solid var(--yelira-gold);
-    outline-offset: 2px;
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
 }
 
-/* ============================================================================
-   TYPOGRAPHY UTILITIES
-   ============================================================================ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-.font-display {
+h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--color-black);
+    letter-spacing: -0.01em;
 }
 
-.font-body {
-    font-family: var(--font-body);
+.text-display {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
 }
 
-/* ============================================================================
-   PROMO BANNER - Elegant Scrolling Marquee
-   ============================================================================ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.yelira-container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PROMO BAR - Elegant Marquee
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 .yelira-promo-bar {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    height: var(--promo-height) !important;
-    background: linear-gradient(90deg, var(--yelira-charcoal) 0%, #242424 50%, var(--yelira-charcoal) 100%) !important;
-    display: flex !important;
-    align-items: center !important;
-    overflow: hidden !important;
-    z-index: 10001 !important;
-}
-
-.yelira-promo-bar::before {
-    content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 20% 50%, rgba(196, 167, 125, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(196, 167, 125, 0.08) 0%, transparent 50%);
-    pointer-events: none;
+    height: var(--promo-height);
+    background: var(--color-charcoal);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1000;
 }
 
 .yelira-promo-bar-inner {
-    display: flex !important;
-    animation: marquee-scroll 35s linear infinite !important;
-    white-space: nowrap !important;
+    display: flex;
+    animation: marquee 30s linear infinite;
+    white-space: nowrap;
 }
 
 .yelira-promo-bar-text {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: var(--space-xl) !important;
-    padding: 0 var(--space-3xl) !important;
-    font-size: var(--text-xs) !important;
-    font-weight: 500 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.2em !important;
-    color: var(--yelira-white) !important;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0 var(--space-10);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-white);
 }
 
-.yelira-promo-bar-text::after {
-    content: '' !important;
-    width: 4px !important;
-    height: 4px !important;
-    background: var(--yelira-gold) !important;
-    border-radius: 50% !important;
-    opacity: 0.8 !important;
+.yelira-promo-bar-text::before {
+    content: '✦';
+    font-size: 8px;
+    opacity: 0.5;
 }
 
-@keyframes marquee-scroll {
+@keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
-/* ============================================================================
-   HEADER - Luxurious & Refined
-   ============================================================================ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER - Clean & Minimal
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 .yelira-header {
-    position: fixed !important;
-    top: var(--promo-height) !important;
-    left: 0 !important;
-    right: 0 !important;
-    background: var(--yelira-white) !important;
-    z-index: 10000 !important;
-    transition: transform var(--transition-elegant), box-shadow var(--transition-base);
+    position: fixed;
+    top: var(--promo-height);
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: var(--color-white);
+    transition: transform var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-out);
 }
 
 .yelira-header.scrolled {
@@ -367,16 +283,7 @@ img {
 
 .yelira-header-main {
     height: var(--header-height);
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.yelira-container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--space-xl);
-    width: 100%;
+    border-bottom: 1px solid var(--color-cloud);
 }
 
 .yelira-header-inner {
@@ -384,115 +291,48 @@ img {
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    gap: var(--space-xl);
-}
-
-/* Burger Menu */
-.yelira-burger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 6px;
-    width: 28px;
-    height: 28px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    position: relative;
-    z-index: 10;
-}
-
-.yelira-burger span {
-    display: block;
-    width: 100%;
-    height: 1.5px;
-    background: var(--yelira-black);
-    transition: all var(--transition-base);
-    transform-origin: center;
-}
-
-.yelira-burger.active span:nth-child(1) {
-    transform: translateY(7.5px) rotate(45deg);
-}
-
-.yelira-burger.active span:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-}
-
-.yelira-burger.active span:nth-child(3) {
-    transform: translateY(-7.5px) rotate(-45deg);
+    gap: var(--space-4);
 }
 
 /* Logo */
 .yelira-logo {
-    flex: 1;
-    text-align: center;
-    position: relative;
+    flex-shrink: 0;
 }
 
 .yelira-logo a {
-    display: inline-block;
-    text-decoration: none;
-    position: relative;
+    display: block;
 }
 
 .yelira-logo-text {
     font-family: var(--font-display);
-    font-size: var(--text-3xl);
+    font-size: var(--text-2xl);
     font-weight: 500;
-    letter-spacing: 0.35em;
-    color: var(--yelira-black);
-    text-transform: uppercase;
-    position: relative;
-}
-
-.yelira-logo-text::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 1px;
-    background: var(--yelira-gold);
-    opacity: 0;
-    transition: opacity var(--transition-base), width var(--transition-base);
-}
-
-.yelira-logo a:hover .yelira-logo-text::after {
-    opacity: 1;
-    width: 60px;
+    letter-spacing: 0.15em;
+    color: var(--color-black);
 }
 
 /* Header Actions */
 .yelira-header-actions {
     display: flex;
     align-items: center;
-    gap: var(--space-lg);
+    gap: var(--space-1);
 }
 
-.yelira-header-actions button,
-.yelira-header-actions a {
+.yelira-header-actions a,
+.yelira-header-actions button {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 44px;
     height: 44px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-primary);
-    border-radius: 50%;
-    transition: all var(--transition-base);
-    position: relative;
+    border-radius: var(--radius-full);
+    color: var(--color-charcoal);
+    transition: all var(--duration-fast) var(--ease-out);
 }
 
-.yelira-header-actions button:hover,
-.yelira-header-actions a:hover {
-    color: var(--yelira-taupe);
-    background: var(--yelira-cream);
+.yelira-header-actions a:hover,
+.yelira-header-actions button:hover {
+    background: var(--color-snow);
 }
 
 .yelira-header-actions svg {
@@ -508,1382 +348,49 @@ img {
 
 .yelira-cart-count {
     position: absolute;
-    top: 4px;
-    right: 4px;
+    top: 6px;
+    right: 6px;
     min-width: 18px;
     height: 18px;
     padding: 0 5px;
-    background: var(--yelira-charcoal);
-    color: var(--yelira-white);
+    background: var(--color-charcoal);
+    color: var(--color-white);
     font-size: 10px;
     font-weight: 600;
     line-height: 18px;
     text-align: center;
-    border-radius: 9px;
-    transform: scale(1);
-    transition: transform var(--transition-fast);
+    border-radius: var(--radius-full);
 }
 
-.yelira-cart:hover .yelira-cart-count {
-    transform: scale(1.1);
-}
-
-/* ============================================================================
-   NAVIGATION - Elegant Category Bar
-   ============================================================================ */
-
-.yelira-nav-categories {
-    background: var(--yelira-white);
-    border-bottom: 1px solid var(--yelira-sand);
-    height: var(--nav-height);
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.yelira-nav-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-}
-
-.yelira-nav-list::-webkit-scrollbar {
+/* Burger Menu */
+.yelira-burger {
     display: none;
-}
-
-.yelira-nav-item {
-    position: relative;
-}
-
-.yelira-nav-item a {
-    display: flex;
-    align-items: center;
-    padding: 0 var(--space-lg);
-    height: var(--nav-height);
-    font-size: var(--text-xs);
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--text-secondary);
-    white-space: nowrap;
-    transition: color var(--transition-base);
-    position: relative;
-}
-
-.yelira-nav-item a::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: var(--yelira-taupe);
-    transition: width var(--transition-base);
-}
-
-.yelira-nav-item a:hover {
-    color: var(--text-primary);
-}
-
-.yelira-nav-item a:hover::before {
-    width: calc(100% - var(--space-xl));
-}
-
-/* Highlight Items (Soldes, Nouveautés) */
-.yelira-nav-item.highlight a {
-    color: var(--yelira-red);
-    font-weight: 600;
-}
-
-.yelira-nav-item.highlight a::before {
-    background: var(--yelira-red);
-}
-
-/* ============================================================================
-   SEARCH BAR - Full Width Overlay
-   ============================================================================ */
-
-.yelira-search-bar {
-    position: fixed;
-    top: calc(var(--promo-height) + var(--header-height));
-    left: 0;
-    right: 0;
-    background: var(--yelira-white);
-    padding: var(--space-xl) 0;
-    border-bottom: 1px solid var(--yelira-sand);
-    z-index: 9999;
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all var(--transition-elegant);
-}
-
-.yelira-search-bar.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-}
-
-.yelira-search-bar .yelira-container {
-    display: flex;
-    align-items: center;
-    gap: var(--space-lg);
-    max-width: var(--container-wide);
-}
-
-.yelira-search-bar form {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    background: var(--yelira-cream);
-    border: 1px solid transparent;
-    transition: border-color var(--transition-base), box-shadow var(--transition-base);
-}
-
-.yelira-search-bar form:focus-within {
-    border-color: var(--yelira-taupe-light);
-    box-shadow: 0 0 0 3px rgba(157, 133, 120, 0.1);
-}
-
-.yelira-search-bar input[type="search"] {
-    flex: 1;
-    padding: var(--space-md) var(--space-xl);
-    border: none;
-    background: transparent;
-    font-family: var(--font-body);
-    font-size: var(--text-md);
-    color: var(--text-primary);
-    outline: none;
-}
-
-.yelira-search-bar input[type="search"]::placeholder {
-    color: var(--text-muted);
-}
-
-.yelira-search-bar button[type="submit"] {
-    padding: var(--space-md) var(--space-xl);
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-muted);
-    transition: color var(--transition-base);
-}
-
-.yelira-search-bar button[type="submit"]:hover {
-    color: var(--yelira-taupe);
-}
-
-.yelira-search-close {
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
     width: 44px;
     height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-muted);
-    border-radius: 50%;
-    transition: all var(--transition-base);
+    padding: 10px;
 }
 
-.yelira-search-close:hover {
-    background: var(--yelira-cream);
-    color: var(--text-primary);
-}
-
-/* Mobile Overlay */
-.yelira-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(15, 15, 15, 0.6);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 9998;
-    opacity: 0;
-    visibility: hidden;
-    transition: all var(--transition-base);
-}
-
-.yelira-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* ============================================================================
-   HERO SECTION - Full Impact
-   ============================================================================ */
-
-.yelira-hero {
-    position: relative;
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: var(--yelira-linen);
-    overflow: hidden;
-}
-
-.yelira-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(ellipse at 30% 20%, rgba(196, 167, 125, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 80%, rgba(157, 133, 120, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-}
-
-.yelira-hero-content {
-    position: relative;
-    z-index: 2;
-    padding: var(--space-4xl) var(--space-xl);
-    max-width: 800px;
-}
-
-.yelira-hero-subtitle {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    font-weight: 500;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--yelira-taupe);
-    margin-bottom: var(--space-lg);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-    animation-delay: 0.2s;
-}
-
-.yelira-hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(var(--text-4xl), 8vw, var(--text-6xl));
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    margin-bottom: var(--space-xl);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-    animation-delay: 0.4s;
-}
-
-.yelira-hero h1 em {
-    font-style: italic;
-    color: var(--yelira-taupe);
-}
-
-.yelira-hero p {
-    font-size: var(--text-md);
-    line-height: 1.8;
-    color: var(--text-secondary);
-    max-width: 500px;
-    margin: 0 auto var(--space-2xl);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-    animation-delay: 0.6s;
-}
-
-.yelira-hero-cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-md);
-    justify-content: center;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-    animation-delay: 0.8s;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ============================================================================
-   BUTTONS - Refined & Elegant
-   ============================================================================ */
-
-.btn,
-.yelira-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-sm);
-    padding: var(--space-md) var(--space-2xl);
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-base);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-primary,
-.yelira-btn-primary {
-    background: var(--yelira-charcoal);
-    color: var(--yelira-white);
-}
-
-.btn-primary::before,
-.yelira-btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--yelira-taupe);
-    transform: translateX(-100%);
-    transition: transform var(--transition-elegant);
-}
-
-.btn-primary:hover::before,
-.yelira-btn-primary:hover::before {
-    transform: translateX(0);
-}
-
-.btn-primary span,
-.yelira-btn-primary span {
-    position: relative;
-    z-index: 1;
-}
-
-.btn-secondary,
-.yelira-btn-secondary {
-    background: transparent;
-    color: var(--text-primary);
-    border: 1px solid var(--yelira-charcoal);
-}
-
-.btn-secondary:hover,
-.yelira-btn-secondary:hover {
-    background: var(--yelira-charcoal);
-    color: var(--yelira-white);
-}
-
-/* WooCommerce Button Overrides */
-.woocommerce a.button,
-.woocommerce button.button,
-.woocommerce input.button,
-button[type="submit"],
-input[type="submit"],
-.wp-block-button__link {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: var(--space-md) var(--space-2xl) !important;
-    background: var(--yelira-charcoal) !important;
-    color: var(--yelira-white) !important;
-    font-family: var(--font-body) !important;
-    font-size: var(--text-xs) !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.15em !important;
-    text-transform: uppercase !important;
-    text-decoration: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-    cursor: pointer !important;
-    transition: all var(--transition-base) !important;
-}
-
-.woocommerce a.button:hover,
-.woocommerce button.button:hover,
-.woocommerce input.button:hover,
-button[type="submit"]:hover,
-input[type="submit"]:hover,
-.wp-block-button__link:hover {
-    background: var(--yelira-taupe) !important;
-}
-
-/* ============================================================================
-   SECTIONS - Layout Components
-   ============================================================================ */
-
-.yelira-section {
-    padding: var(--space-5xl) var(--space-xl);
-    max-width: var(--container-max);
-    margin: 0 auto;
-}
-
-.yelira-section-header {
-    text-align: center;
-    margin-bottom: var(--space-3xl);
-}
-
-.yelira-section-label {
-    font-size: var(--text-xs);
-    font-weight: 500;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--yelira-taupe);
-    margin-bottom: var(--space-sm);
-}
-
-.yelira-section-title {
-    font-family: var(--font-display);
-    font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
-    font-weight: 400;
-    color: var(--text-primary);
-    margin-bottom: var(--space-md);
-    letter-spacing: -0.01em;
-}
-
-.yelira-section-subtitle {
-    font-size: var(--text-md);
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* ============================================================================
-   CATEGORY GRID - Visual Impact
-   ============================================================================ */
-
-.yelira-categories-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
-}
-
-.yelira-category-card {
-    position: relative;
-    aspect-ratio: 4/5;
-    overflow: hidden;
-    background: var(--yelira-beige);
-    cursor: pointer;
-}
-
-.yelira-category-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(15, 15, 15, 0.7) 0%, rgba(15, 15, 15, 0.1) 50%, transparent 100%);
-    z-index: 1;
-    transition: opacity var(--transition-base);
-}
-
-.yelira-category-card:hover::before {
-    opacity: 0.8;
-}
-
-.yelira-category-card img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-elegant);
-}
-
-.yelira-category-card:hover img {
-    transform: scale(1.08);
-}
-
-.yelira-category-card-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: var(--space-xl);
-    z-index: 2;
-    transform: translateY(10px);
-    transition: transform var(--transition-base);
-}
-
-.yelira-category-card:hover .yelira-category-card-content {
-    transform: translateY(0);
-}
-
-.yelira-category-card-title {
-    font-family: var(--font-display);
-    font-size: var(--text-xl);
-    font-weight: 500;
-    color: var(--yelira-white);
-    margin-bottom: var(--space-xs);
-}
-
-.yelira-category-card-count {
-    font-size: var(--text-xs);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.yelira-category-card a {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-}
-
-/* ============================================================================
-   PRODUCT CARDS - Refined E-commerce
-   ============================================================================ */
-
-.woocommerce ul.products {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: var(--space-xl) !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    list-style: none !important;
-}
-
-.woocommerce ul.products li.product {
-    float: none !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: left !important;
-    position: relative;
-    background: var(--yelira-white);
-    transition: box-shadow var(--transition-base);
-}
-
-.woocommerce ul.products li.product:hover {
-    box-shadow: var(--shadow-lg);
-}
-
-/* Product Image Container */
-.woocommerce ul.products li.product .woocommerce-loop-product__link {
+.yelira-burger span {
     display: block;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Product Images */
-.woocommerce ul.products li.product .attachment-woocommerce_thumbnail,
-.woocommerce ul.products li.product img:not(.secondary-image) {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 3/4 !important;
-    object-fit: cover !important;
-    transition: opacity var(--transition-slow) !important;
-    background: var(--yelira-cream);
-}
-
-/* Secondary Image on Hover */
-.woocommerce ul.products li.product .secondary-image {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    opacity: 0 !important;
-    transition: opacity var(--transition-slow) !important;
-}
-
-.woocommerce ul.products li.product:hover .attachment-woocommerce_thumbnail,
-.woocommerce ul.products li.product:hover img:not(.secondary-image) {
-    opacity: 0;
-}
-
-.woocommerce ul.products li.product:hover .secondary-image {
-    opacity: 1 !important;
-}
-
-/* Product Info */
-.woocommerce ul.products li.product .woocommerce-loop-product__link + * {
-    padding: var(--space-md);
-}
-
-/* Product Badges */
-.yelira-badges {
-    position: absolute !important;
-    top: var(--space-md) !important;
-    left: var(--space-md) !important;
-    z-index: 5 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: var(--space-xs) !important;
-}
-
-.badge-new,
-.badge-sale,
-.badge-low-stock {
-    padding: var(--space-xs) var(--space-sm) !important;
-    font-size: 10px !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.1em !important;
-    text-transform: uppercase !important;
-}
-
-.badge-new {
-    background: var(--yelira-gold) !important;
-    color: var(--yelira-white) !important;
-}
-
-.badge-sale {
-    background: var(--yelira-red) !important;
-    color: var(--yelira-white) !important;
-}
-
-.badge-low-stock {
-    background: var(--yelira-warning) !important;
-    color: var(--yelira-white) !important;
-}
-
-/* Hide default WooCommerce & Blocksy sale badges everywhere (we use custom badges) */
-.woocommerce ul.products li.product .onsale,
-.woocommerce span.onsale,
-.woocommerce div.product .onsale,
-.woocommerce div.product span.onsale,
-.woocommerce-product-gallery .onsale,
-.woocommerce-product-gallery__wrapper .onsale,
-.ct-product-view .onsale,
-.product-entry-wrapper .onsale,
-.onsale,
-span.onsale,
-span.onsale[data-shape],
-span.onsale[data-shape="type-2"],
-figure .onsale,
-figure > .onsale,
-.product figure .onsale,
-li.product .onsale,
-li.product figure span.onsale,
-.single-product .onsale,
-.type-product .onsale,
-.product .onsale,
-div.product .onsale,
-.summary .onsale,
-.images .onsale,
-.woocommerce-product-gallery .onsale {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    position: absolute !important;
-    left: -9999px !important;
-    clip: rect(0, 0, 0, 0) !important;
-    pointer-events: none !important;
-}
-
-/* Badges on single product pages */
-.yelira-badges-single {
-    position: absolute !important;
-    top: var(--space-md) !important;
-    left: var(--space-md) !important;
-    z-index: 10 !important;
-}
-
-.woocommerce div.product div.images {
-    position: relative;
-}
-
-/* Quick Actions */
-.yelira-quick-actions {
-    position: absolute;
-    bottom: var(--space-md);
-    left: var(--space-md);
-    right: var(--space-md);
-    display: flex;
-    gap: var(--space-sm);
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all var(--transition-base);
-    z-index: 5;
-}
-
-.woocommerce ul.products li.product:hover .yelira-quick-actions {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Product Category */
-.yelira-product-category {
-    display: block !important;
-    font-size: var(--text-xs) !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.1em !important;
-    text-transform: uppercase !important;
-    color: var(--text-muted) !important;
-    margin: var(--space-md) var(--space-md) var(--space-xs) !important;
-}
-
-/* Product Title */
-.woocommerce ul.products li.product .woocommerce-loop-product__title {
-    font-family: var(--font-display) !important;
-    font-size: var(--text-md) !important;
-    font-weight: 500 !important;
-    color: var(--text-primary) !important;
-    margin: 0 var(--space-md) var(--space-sm) !important;
-    padding: 0 !important;
-    line-height: 1.4 !important;
-    transition: color var(--transition-base) !important;
-}
-
-.woocommerce ul.products li.product:hover .woocommerce-loop-product__title {
-    color: var(--yelira-taupe) !important;
-}
-
-/* Hide SKU and Excerpt */
-.yelira-product-sku,
-.yelira-product-excerpt {
-    display: none !important;
-}
-
-/* Product Price */
-.woocommerce ul.products li.product .price {
-    font-family: var(--font-body) !important;
-    font-size: var(--text-base) !important;
-    font-weight: 500 !important;
-    color: var(--text-primary) !important;
-    margin: 0 var(--space-md) var(--space-md) !important;
-}
-
-.woocommerce ul.products li.product .price del {
-    color: var(--text-muted) !important;
-    font-weight: 400 !important;
-    margin-right: var(--space-sm) !important;
-    font-size: var(--text-sm) !important;
-}
-
-.woocommerce ul.products li.product .price ins {
-    text-decoration: none !important;
-    color: var(--yelira-red) !important;
-    font-weight: 600 !important;
-}
-
-/* Add to Cart Button */
-.woocommerce ul.products li.product .button,
-.woocommerce ul.products li.product .add_to_cart_button {
-    display: block !important;
-    width: calc(100% - var(--space-xl)) !important;
-    margin: 0 var(--space-md) var(--space-md) !important;
-    padding: var(--space-sm) var(--space-md) !important;
-    background: var(--yelira-charcoal) !important;
-    color: var(--yelira-white) !important;
-    font-size: 11px !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.1em !important;
-    text-transform: uppercase !important;
-    text-align: center !important;
-    border: none !important;
-    cursor: pointer !important;
-    transition: all var(--transition-base) !important;
-}
-
-.woocommerce ul.products li.product .button:hover,
-.woocommerce ul.products li.product .add_to_cart_button:hover {
-    background: var(--yelira-taupe) !important;
-}
-
-/* ============================================================================
-   COLLECTION SECTIONS - Occasion-Based
-   ============================================================================ */
-
-.yelira-collections {
-    padding: var(--space-5xl) 0;
-    background: var(--yelira-cream);
-}
-
-.yelira-collections-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--space-xl);
-}
-
-.yelira-collection-card {
-    position: relative;
-    height: 500px;
-    overflow: hidden;
-    background: var(--yelira-beige);
-}
-
-.yelira-collection-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 40%, rgba(15, 15, 15, 0.8) 100%);
-    z-index: 1;
-}
-
-.yelira-collection-card img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-elegant);
-}
-
-.yelira-collection-card:hover img {
-    transform: scale(1.05);
-}
-
-.yelira-collection-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: var(--space-2xl);
-    z-index: 2;
-}
-
-.yelira-collection-label {
-    font-size: var(--text-xs);
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--yelira-gold-light);
-    margin-bottom: var(--space-sm);
-}
-
-.yelira-collection-title {
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
-    font-weight: 400;
-    color: var(--yelira-white);
-    margin-bottom: var(--space-md);
-    line-height: 1.2;
-}
-
-.yelira-collection-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--yelira-white);
-    text-decoration: none;
-    transition: gap var(--transition-base);
-}
-
-.yelira-collection-link:hover {
-    gap: var(--space-md);
-}
-
-.yelira-collection-link svg {
-    width: 16px;
-    height: 16px;
-    transition: transform var(--transition-base);
-}
-
-.yelira-collection-link:hover svg {
-    transform: translateX(4px);
-}
-
-/* ============================================================================
-   FEATURES BAR - Trust Signals
-   ============================================================================ */
-
-.yelira-features {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-lg);
-    padding: var(--space-3xl) var(--space-xl);
-    max-width: var(--container-max);
-    margin: 0 auto;
-    border-top: 1px solid var(--yelira-sand);
-    border-bottom: 1px solid var(--yelira-sand);
-}
-
-.yelira-feature {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--space-sm);
-}
-
-.yelira-feature-icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--yelira-taupe);
-}
-
-.yelira-feature-icon svg {
-    width: 28px;
-    height: 28px;
-    stroke-width: 1.5;
-}
-
-.yelira-feature-title {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: 0.05em;
-}
-
-.yelira-feature-desc {
-    font-size: var(--text-xs);
-    color: var(--text-muted);
-}
-
-/* ============================================================================
-   SHOP PAGE
-   ============================================================================ */
-
-.woocommerce-page .woocommerce,
-.post-type-archive-product .woocommerce {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: var(--space-3xl) var(--space-xl);
-}
-
-.woocommerce .woocommerce-result-count {
-    font-size: var(--text-sm);
-    color: var(--text-muted);
-    margin-bottom: var(--space-xl) !important;
-}
-
-.woocommerce .woocommerce-ordering {
-    margin-bottom: var(--space-xl) !important;
-}
-
-.woocommerce .woocommerce-ordering select {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    padding: var(--space-sm) var(--space-md);
-    border: 1px solid var(--yelira-sand);
-    background: var(--yelira-white);
-    cursor: pointer;
-}
-
-/* ============================================================================
-   BACK TO TOP
-   ============================================================================ */
-
-.back-to-top {
-    position: fixed;
-    bottom: var(--space-xl);
-    right: var(--space-xl);
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--yelira-charcoal);
-    color: var(--yelira-white);
-    border: none;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all var(--transition-base);
-    z-index: 9000;
-    box-shadow: var(--shadow-md);
-}
-
-.back-to-top.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.back-to-top:hover {
-    background: var(--yelira-taupe);
-    transform: translateY(-4px);
-}
-
-.back-to-top svg {
     width: 20px;
-    height: 20px;
+    height: 1.5px;
+    background: var(--color-charcoal);
+    transition: all var(--duration-base) var(--ease-out);
 }
 
-/* ============================================================================
-   NOTIFICATION TOAST
-   ============================================================================ */
+.yelira-burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
 
-.yelira-notification {
-    position: fixed;
-    bottom: var(--space-2xl);
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--yelira-charcoal);
-    color: var(--yelira-white);
-    padding: var(--space-md) var(--space-xl);
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    z-index: 10002;
+.yelira-burger.active span:nth-child(2) {
     opacity: 0;
-    transition: all var(--transition-elegant);
-    box-shadow: var(--shadow-xl);
 }
 
-.yelira-notification.is-visible {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-}
-
-.yelira-notification .notification-icon {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--yelira-success);
-    border-radius: 50%;
-    font-size: 12px;
-}
-
-.yelira-notification .notification-message {
-    font-size: var(--text-sm);
-    font-weight: 500;
-}
-
-/* ============================================================================
-   FOOTER - Sophisticated & Complete
-   ============================================================================ */
-
-.yelira-footer {
-    background: var(--yelira-charcoal);
-    color: var(--yelira-white);
-    margin-top: var(--space-5xl);
-    position: relative;
-}
-
-.yelira-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--yelira-gold-dark), transparent);
-}
-
-/* Footer Newsletter */
-.yelira-footer-newsletter {
-    padding: var(--space-4xl) 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    text-align: center;
-}
-
-.yelira-footer-newsletter h3 {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    font-weight: 400;
-    margin-bottom: var(--space-sm);
-}
-
-.yelira-footer-newsletter p {
-    font-size: var(--text-sm);
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: var(--space-xl);
-}
-
-.yelira-newsletter-form {
-    display: flex;
-    max-width: 500px;
-    margin: 0 auto;
-    gap: var(--space-sm);
-}
-
-.yelira-newsletter-form input[type="email"] {
-    flex: 1;
-    padding: var(--space-md) var(--space-lg);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--yelira-white);
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    transition: all var(--transition-base);
-}
-
-.yelira-newsletter-form input[type="email"]::placeholder {
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.yelira-newsletter-form input[type="email"]:focus {
-    outline: none;
-    border-color: var(--yelira-gold);
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.yelira-newsletter-form button {
-    padding: var(--space-md) var(--space-xl);
-    background: var(--yelira-gold);
-    color: var(--yelira-charcoal);
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-base);
-}
-
-.yelira-newsletter-form button:hover {
-    background: var(--yelira-gold-light);
-}
-
-/* Footer Main Grid */
-.yelira-footer-top {
-    padding: var(--space-4xl) 0 var(--space-3xl);
-}
-
-.yelira-footer-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: var(--space-3xl);
-}
-
-.yelira-footer-col h4 {
-    font-family: var(--font-display);
-    font-size: var(--text-lg);
-    font-weight: 500;
-    margin-bottom: var(--space-lg);
-    color: var(--yelira-white);
-}
-
-.yelira-footer-col p {
-    font-size: var(--text-sm);
-    line-height: 1.8;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: var(--space-lg);
-}
-
-/* Footer Logo Section */
-.yelira-footer-brand {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    margin-bottom: var(--space-md);
-    color: var(--yelira-white);
-}
-
-/* Footer Links */
-.yelira-footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.yelira-footer-links li {
-    margin-bottom: var(--space-sm);
-}
-
-.yelira-footer-links a {
-    font-size: var(--text-sm);
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: none;
-    transition: all var(--transition-base);
-    display: inline-block;
-}
-
-.yelira-footer-links a:hover {
-    color: var(--yelira-gold);
-    transform: translateX(4px);
-}
-
-/* Footer Contact */
-.yelira-footer-contact {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.yelira-footer-contact li {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-md);
-    font-size: var(--text-sm);
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.yelira-footer-contact svg {
-    width: 18px;
-    height: 18px;
-    color: var(--yelira-gold);
-    flex-shrink: 0;
-    margin-top: 2px;
-}
-
-.yelira-footer-contact a {
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: none;
-    transition: color var(--transition-base);
-}
-
-.yelira-footer-contact a:hover {
-    color: var(--yelira-gold);
-}
-
-/* Footer Social */
-.yelira-footer-social {
-    margin-top: var(--space-lg);
-}
-
-.yelira-social-icons {
-    display: flex;
-    gap: var(--space-sm);
-}
-
-.yelira-social-icons a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--yelira-white);
-    transition: all var(--transition-base);
-}
-
-.yelira-social-icons a:hover {
-    background: var(--yelira-gold);
-    border-color: var(--yelira-gold);
-    color: var(--yelira-charcoal);
-}
-
-.yelira-social-icons svg {
-    width: 18px;
-    height: 18px;
-}
-
-/* Footer Payments */
-.yelira-footer-payments {
-    margin-top: var(--space-xl);
-}
-
-.yelira-footer-payments h5 {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
-    margin-bottom: var(--space-sm);
-}
-
-.yelira-payment-icons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs);
-}
-
-.payment-icon {
-    padding: var(--space-xs) var(--space-sm);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-/* Footer Bottom */
-.yelira-footer-bottom {
-    padding: var(--space-lg) 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.yelira-footer-bottom p {
-    margin: 0;
-    font-size: var(--text-xs);
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.yelira-footer-legal {
-    display: flex;
-    gap: var(--space-lg);
-}
-
-.yelira-footer-legal a {
-    font-size: var(--text-xs);
-    color: rgba(255, 255, 255, 0.4);
-    text-decoration: none;
-    transition: color var(--transition-base);
-}
-
-.yelira-footer-legal a:hover {
-    color: var(--yelira-gold);
-}
-
-/* ============================================================================
-   RESPONSIVE DESIGN
-   ============================================================================ */
-
-@media (max-width: 1200px) {
-    .woocommerce ul.products {
-        grid-template-columns: repeat(3, 1fr) !important;
-    }
-
-    .yelira-collections-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .yelira-footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-2xl);
-    }
-}
-
-@media (max-width: 992px) {
-    :root {
-        --header-height: 60px;
-        --nav-height: 0px;
-    }
-
-    body {
-        padding-top: calc(var(--promo-height) + var(--header-height)) !important;
-    }
-
-    .woocommerce ul.products {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: var(--space-md) !important;
-    }
-
-    .yelira-categories-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .yelira-collections-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .yelira-collection-card {
-        height: 400px;
-    }
-
-    .yelira-features {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .yelira-hero h1 {
-        font-size: var(--text-4xl);
-    }
+.yelira-burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 @media (max-width: 768px) {
@@ -1891,1293 +398,269 @@ div.product .onsale,
         display: flex;
     }
 
-    .yelira-logo-text {
-        font-size: var(--text-xl);
-        letter-spacing: 0.2em;
-    }
-
-    /* Mobile Navigation */
-    .yelira-nav-categories {
-        position: fixed;
-        top: calc(var(--promo-height) + var(--header-height));
-        left: 0;
-        width: 300px;
-        height: calc(100vh - var(--promo-height) - var(--header-height));
-        height: calc(100dvh - var(--promo-height) - var(--header-height));
-        background: var(--yelira-white);
-        transform: translateX(-100%);
-        transition: transform var(--transition-elegant);
-        z-index: 9997;
-        border-right: 1px solid var(--yelira-sand);
-        overflow-y: auto;
-        display: block;
-    }
-
-    .yelira-nav-categories.active {
-        transform: translateX(0);
-    }
-
-    .yelira-nav-list {
-        flex-direction: column;
-        align-items: stretch;
-        padding: var(--space-lg) 0;
-    }
-
-    .yelira-nav-item a {
-        text-align: left;
-        padding: var(--space-md) var(--space-xl);
-        height: auto;
-        border-bottom: 1px solid var(--yelira-cream);
-        font-size: var(--text-sm);
-    }
-
-    .yelira-nav-item a::before {
+    .yelira-header-actions .yelira-account {
         display: none;
     }
+}
 
-    .yelira-hero {
-        min-height: 60vh;
-        padding: var(--space-3xl) var(--space-md);
-    }
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVIGATION - Category Bar
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-    .yelira-hero h1 {
-        font-size: var(--text-3xl);
-    }
+.yelira-nav-categories {
+    height: var(--nav-height);
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-cloud);
+    overflow: hidden;
+}
 
-    .yelira-section {
-        padding: var(--space-3xl) var(--space-md);
-    }
-
-    .yelira-section-title {
-        font-size: var(--text-2xl);
-    }
-
-    .yelira-footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .yelira-footer-social,
-    .yelira-social-icons {
-        justify-content: center;
-    }
-
-    .yelira-footer-contact li {
-        justify-content: center;
-    }
-
-    .yelira-payment-icons {
-        justify-content: center;
-    }
-
-    .yelira-footer-bottom {
-        flex-direction: column;
-        gap: var(--space-md);
-        text-align: center;
-    }
-
-    .yelira-newsletter-form {
-        flex-direction: column;
+@media (max-width: 768px) {
+    .yelira-nav-categories {
+        display: none;
     }
 }
 
-@media (max-width: 576px) {
-    .woocommerce ul.products {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: var(--space-sm) !important;
-    }
-
-    .yelira-categories-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .yelira-header-actions {
-        gap: var(--space-sm);
-    }
-
-    .yelira-header-actions button,
-    .yelira-header-actions a {
-        width: 40px;
-        height: 40px;
-    }
-
-    .yelira-features {
-        grid-template-columns: 1fr;
-        gap: var(--space-xl);
-    }
-
-    .woocommerce ul.products li.product .button,
-    .woocommerce ul.products li.product .add_to_cart_button {
-        padding: var(--space-xs) var(--space-sm) !important;
-        font-size: 10px !important;
-    }
-
-    .yelira-promo-bar-text {
-        font-size: 10px !important;
-        letter-spacing: 0.15em !important;
-        padding: 0 var(--space-xl) !important;
-    }
-}
-
-/* ============================================================================
-   HIDE BLOCKSY DEFAULT ELEMENTS
-   ============================================================================ */
-
-header.ct-header,
-.site-header:not(.yelira-header),
-footer.ct-footer,
-.site-footer:not(.yelira-footer) {
-    display: none !important;
-}
-
-.site-main,
-#primary,
-.content-area {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-}
-
-/* ============================================================================
-   WOOCOMMERCE ADDITIONAL OVERRIDES
-   ============================================================================ */
-
-.woocommerce .star-rating {
-    color: var(--yelira-gold) !important;
-}
-
-.woocommerce-message,
-.woocommerce-info {
-    border-top-color: var(--yelira-taupe) !important;
-}
-
-.woocommerce-message::before {
-    color: var(--yelira-taupe) !important;
-}
-
-/* Single Product Page */
-.woocommerce div.product .product_title {
-    font-family: var(--font-display) !important;
-    font-size: var(--text-3xl) !important;
-    font-weight: 400 !important;
-    color: var(--text-primary) !important;
-}
-
-.woocommerce div.product p.price {
-    font-size: var(--text-xl) !important;
-    font-weight: 500 !important;
-    color: var(--text-primary) !important;
-}
-
-.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
-    color: var(--yelira-taupe) !important;
-}
-
-/* Quantity Buttons */
-.quantity {
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--yelira-sand);
-}
-
-.quantity input.qty {
-    width: 50px !important;
-    text-align: center;
-    border: none !important;
-    font-family: var(--font-body);
-    font-size: var(--text-md);
-    -moz-appearance: textfield;
-}
-
-.quantity input.qty::-webkit-outer-spin-button,
-.quantity input.qty::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.qty-btn {
-    width: 36px;
-    height: 36px;
+.yelira-nav-list {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--yelira-cream);
+    gap: var(--space-1);
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.yelira-nav-item a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 var(--space-4);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-slate);
+    position: relative;
+    transition: color var(--duration-fast);
+}
+
+.yelira-nav-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: var(--space-4);
+    right: var(--space-4);
+    height: 2px;
+    background: var(--color-charcoal);
+    transform: scaleX(0);
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.yelira-nav-item a:hover {
+    color: var(--color-charcoal);
+}
+
+.yelira-nav-item a:hover::after {
+    transform: scaleX(1);
+}
+
+.yelira-nav-item.highlight a {
+    color: var(--color-sale);
+    font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SEARCH BAR - Dropdown Style
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.yelira-search-bar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    padding: var(--space-6) 0;
+    border-bottom: 1px solid var(--color-cloud);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+.yelira-search-bar.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.yelira-search-bar .yelira-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.yelira-search-bar form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: var(--color-snow);
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-full);
+}
+
+.yelira-search-bar input {
+    flex: 1;
     border: none;
-    cursor: pointer;
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    transition: all var(--transition-base);
+    background: none;
+    font-size: var(--text-base);
+    color: var(--color-charcoal);
+    outline: none;
 }
 
-.qty-btn:hover {
-    background: var(--yelira-sand);
-    color: var(--text-primary);
+.yelira-search-bar input::placeholder {
+    color: var(--color-gray);
 }
 
-/* ============================================================================
-   LOADING STATES & ANIMATIONS
-   ============================================================================ */
-
-@keyframes shimmer {
-    0% {
-        background-position: -200% 0;
-    }
-    100% {
-        background-position: 200% 0;
-    }
+.yelira-search-bar button[type="submit"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray);
 }
 
-.loading {
-    background: linear-gradient(90deg, var(--yelira-cream) 25%, var(--yelira-beige) 50%, var(--yelira-cream) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
+.yelira-search-bar button[type="submit"] svg {
+    width: 20px;
+    height: 20px;
 }
 
-/* ============================================================================
-   MOBILE BOTTOM NAVIGATION - App-Like Experience
-   ============================================================================ */
+.yelira-search-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--color-gray);
+    border-radius: var(--radius-full);
+    transition: all var(--duration-fast);
+}
+
+.yelira-search-close:hover {
+    background: var(--color-snow);
+    color: var(--color-charcoal);
+}
+
+/* Overlay */
+.yelira-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 998;
+    transition: all var(--duration-base);
+}
+
+.yelira-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE BOTTOM NAVIGATION - App Style
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 .yelira-mobile-nav {
-    display: none;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    height: calc(64px + env(safe-area-inset-bottom));
-    background: var(--yelira-white);
-    border-top: 1px solid var(--yelira-sand);
-    z-index: 10000;
+    height: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom));
+    background: var(--color-white);
+    border-top: 1px solid var(--color-cloud);
+    display: none;
+    z-index: 1001;
     padding-bottom: env(safe-area-inset-bottom);
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
-    /* Flex container pour les items directement dans nav */
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform var(--duration-base) var(--ease-out);
 }
 
 .yelira-mobile-nav.hidden {
     transform: translateY(100%);
-    opacity: 0;
 }
 
-.yelira-mobile-nav-inner {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 64px;
-    max-width: 500px;
-    margin: 0 auto;
-    width: 100%;
+@media (max-width: 768px) {
+    .yelira-mobile-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        padding-top: var(--space-2);
+    }
 }
 
 .yelira-mobile-nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 4px;
-    padding: 8px 12px;
-    text-decoration: none;
-    color: var(--text-muted);
-    transition: all var(--transition-fast);
+    gap: 2px;
+    padding: var(--space-1) var(--space-3);
+    color: var(--color-gray);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color var(--duration-fast);
     position: relative;
-    -webkit-tap-highlight-color: transparent;
-    /* Reset pour les buttons */
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
 }
 
 .yelira-mobile-nav-item.active {
-    color: var(--yelira-taupe);
+    color: var(--color-charcoal);
 }
 
 .yelira-mobile-nav-item svg {
     width: 24px;
     height: 24px;
     stroke-width: 1.5;
-    transition: transform var(--transition-fast);
+    transition: transform var(--duration-fast) var(--ease-spring);
 }
 
 .yelira-mobile-nav-item:active svg {
-    transform: scale(0.9);
+    transform: scale(0.85);
 }
 
-.yelira-mobile-nav-item span {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-}
-
-.yelira-mobile-nav-item .nav-badge,
-.yelira-mobile-nav-item .yelira-mobile-nav-badge {
+.yelira-mobile-nav-badge {
     position: absolute;
-    top: 2px;
-    right: 8px;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 5px;
-    background: var(--yelira-red);
-    color: var(--yelira-white);
-    font-size: 10px;
-    font-weight: 700;
-    line-height: 18px;
-    text-align: center;
-    border-radius: 9px;
-}
-
-/* Active indicator dot */
-.yelira-mobile-nav-item.active::after {
-    content: '';
-    position: absolute;
-    bottom: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    background: var(--yelira-taupe);
-    border-radius: 50%;
-}
-
-/* ============================================================================
-   STICKY ADD TO CART - Mobile Product Pages
-   ============================================================================ */
-
-.yelira-sticky-atc {
-    display: none;
-    position: fixed;
-    bottom: 64px; /* Above mobile nav */
-    left: 0;
-    right: 0;
-    background: var(--yelira-white);
-    padding: 12px 16px;
-    border-top: 1px solid var(--yelira-sand);
-    z-index: 9999;
-    transform: translateY(100%);
-    transition: transform var(--transition-base);
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-    padding-bottom: calc(12px + env(safe-area-inset-bottom));
-}
-
-.yelira-sticky-atc.visible,
-.yelira-sticky-atc.is-visible {
-    display: block !important;
-    transform: translateY(0);
-}
-
-.yelira-sticky-atc-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.yelira-sticky-atc-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    flex-shrink: 1;
-    min-width: 0;
-}
-
-.yelira-sticky-atc-name {
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--text-primary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.yelira-sticky-atc-price {
-    flex-shrink: 0;
-}
-
-.yelira-sticky-atc-price .price {
-    font-family: var(--font-display);
-    font-size: var(--text-base);
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.yelira-sticky-atc-price .price del {
-    font-size: var(--text-xs);
-    color: var(--text-muted);
-    margin-right: 4px;
-}
-
-.yelira-sticky-atc-price .price ins {
-    text-decoration: none;
-    color: var(--yelira-red);
-}
-
-.yelira-sticky-atc-price .current-price {
-    font-family: var(--font-display);
-    font-size: var(--text-lg);
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.yelira-sticky-atc-price .original-price {
-    font-size: var(--text-xs);
-    color: var(--text-muted);
-    text-decoration: line-through;
-}
-
-.yelira-sticky-atc-btn {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 14px 24px;
-    background: var(--yelira-charcoal);
-    color: var(--yelira-white);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-base);
-    -webkit-tap-highlight-color: transparent;
-}
-
-.yelira-sticky-atc-btn:active {
-    transform: scale(0.98);
-    background: var(--yelira-taupe);
-}
-
-.yelira-sticky-atc-btn svg {
-    width: 18px;
-    height: 18px;
-}
-
-.yelira-sticky-atc-btn-options {
-    background: var(--yelira-taupe);
-    text-decoration: none;
-}
-
-.yelira-sticky-atc-btn-disabled {
-    background: var(--yelira-sand);
-    color: var(--text-muted);
-    cursor: not-allowed;
-}
-
-.yelira-sticky-atc-btn-disabled:active {
-    transform: none;
-    background: var(--yelira-sand);
-}
-
-/* ============================================================================
-   ENHANCED MOBILE SEARCH - Full Screen Experience
-   ============================================================================ */
-
-@media (max-width: 768px) {
-    .yelira-search-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: var(--yelira-white);
-        padding: 0;
-        border: none;
-        z-index: 10002;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .yelira-search-bar .yelira-container {
-        flex-direction: column;
-        padding: 0;
-        height: 100%;
-    }
-
-    .yelira-search-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 16px;
-        border-bottom: 1px solid var(--yelira-sand);
-        background: var(--yelira-white);
-    }
-
-    .yelira-search-bar form {
-        flex: 1;
-        border-radius: 8px;
-    }
-
-    .yelira-search-bar input[type="search"] {
-        font-size: 16px; /* Prevents iOS zoom */
-        padding: 12px 16px;
-    }
-
-    .yelira-search-suggestions {
-        flex: 1;
-        overflow-y: auto;
-        padding: 16px;
-    }
-
-    .yelira-search-suggestion-title {
-        font-size: var(--text-xs);
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-muted);
-        margin-bottom: 12px;
-    }
-
-    .yelira-search-suggestion-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--yelira-cream);
-        color: var(--text-primary);
-        text-decoration: none;
-    }
-
-    .yelira-search-suggestion-item svg {
-        width: 20px;
-        height: 20px;
-        color: var(--text-muted);
-    }
-}
-
-/* ============================================================================
-   PRODUCT CARDS - Mobile Optimized
-   ============================================================================ */
-
-@media (max-width: 768px) {
-    .woocommerce ul.products li.product {
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-    }
-
-    /* Tap feedback */
-    .woocommerce ul.products li.product .woocommerce-loop-product__link {
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .woocommerce ul.products li.product .woocommerce-loop-product__link:active {
-        opacity: 0.9;
-    }
-
-    /* Better touch targets */
-    .woocommerce ul.products li.product .button,
-    .woocommerce ul.products li.product .add_to_cart_button {
-        min-height: 44px;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    /* Wishlist heart button */
-    .yelira-wishlist-btn {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--yelira-white);
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-        z-index: 6;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        transition: all var(--transition-fast);
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .yelira-wishlist-btn:active {
-        transform: scale(0.9);
-    }
-
-    .yelira-wishlist-btn svg {
-        width: 18px;
-        height: 18px;
-        color: var(--text-muted);
-        transition: all var(--transition-fast);
-    }
-
-    .yelira-wishlist-btn.is-active svg {
-        color: var(--yelira-red);
-        fill: var(--yelira-red);
-    }
-}
-
-/* ============================================================================
-   SWIPEABLE CATEGORIES - Horizontal Scroll
-   ============================================================================ */
-
-.yelira-categories-scroll {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: 0 16px 16px;
-    margin: 0 -16px;
-}
-
-.yelira-categories-scroll::-webkit-scrollbar {
-    display: none;
-}
-
-.yelira-category-chip {
-    flex-shrink: 0;
-    scroll-snap-align: start;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 12px;
-    background: var(--yelira-white);
-    border-radius: var(--radius-lg);
-    text-decoration: none;
-    min-width: 80px;
-    box-shadow: var(--shadow-sm);
-    transition: all var(--transition-base);
-    -webkit-tap-highlight-color: transparent;
-}
-
-.yelira-category-chip:active {
-    transform: scale(0.95);
-}
-
-.yelira-category-chip-icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--yelira-cream);
-    border-radius: 50%;
-}
-
-.yelira-category-chip-icon img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-}
-
-.yelira-category-chip-label {
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text-primary);
-    text-align: center;
-    white-space: nowrap;
-}
-
-/* ============================================================================
-   SKELETON LOADING STATES
-   ============================================================================ */
-
-.skeleton {
-    background: linear-gradient(
-        90deg,
-        var(--yelira-cream) 0%,
-        var(--yelira-beige) 50%,
-        var(--yelira-cream) 100%
-    );
-    background-size: 200% 100%;
-    animation: skeleton-pulse 1.5s ease-in-out infinite;
-    border-radius: var(--radius-sm);
-}
-
-@keyframes skeleton-pulse {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-}
-
-.skeleton-product-card {
-    display: flex;
-    flex-direction: column;
-}
-
-.skeleton-product-image {
-    aspect-ratio: 3/4;
-    margin-bottom: 12px;
-}
-
-.skeleton-product-title {
+    top: -2px;
+    right: 4px;
+    min-width: 16px;
     height: 16px;
-    width: 80%;
-    margin-bottom: 8px;
+    padding: 0 4px;
+    background: var(--color-charcoal);
+    color: var(--color-white);
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    border-radius: var(--radius-full);
 }
 
-.skeleton-product-price {
-    height: 14px;
-    width: 40%;
-}
-
-/* ============================================================================
-   PULL TO REFRESH INDICATOR
-   ============================================================================ */
-
-.yelira-pull-indicator {
-    position: fixed;
-    top: calc(var(--promo-height) + var(--header-height));
-    left: 50%;
-    transform: translateX(-50%) translateY(-100%);
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--yelira-white);
-    border-radius: 50%;
-    box-shadow: var(--shadow-md);
-    z-index: 9998;
-    transition: transform var(--transition-base);
-    opacity: 0;
-}
-
-.yelira-pull-indicator.is-pulling {
-    opacity: 1;
-    transform: translateX(-50%) translateY(20px);
-}
-
-.yelira-pull-indicator svg {
-    width: 20px;
-    height: 20px;
-    color: var(--yelira-taupe);
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* ============================================================================
-   ENHANCED MICRO-INTERACTIONS
-   ============================================================================ */
-
-/* Button press effect */
-.btn:active,
-.yelira-btn:active,
-button:active {
-    transform: scale(0.98);
-}
-
-/* Card hover lift */
-@media (hover: hover) {
-    .yelira-category-card:hover,
-    .yelira-collection-card:hover {
-        transform: translateY(-4px);
-    }
-}
-
-/* Image zoom on tap (mobile) */
-@media (max-width: 768px) {
-    .woocommerce ul.products li.product:active .attachment-woocommerce_thumbnail {
-        transform: scale(1.02);
-    }
-}
-
-/* Ripple effect for buttons */
-.ripple {
-    position: relative;
-    overflow: hidden;
-}
-
-.ripple::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.ripple:active::after {
-    width: 200px;
-    height: 200px;
-}
-
-/* ============================================================================
-   TRUST BADGES - Mobile Visible
-   ============================================================================ */
-
-.yelira-trust-strip {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    padding: 16px;
-    background: var(--yelira-cream);
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-}
-
-.yelira-trust-strip::-webkit-scrollbar {
-    display: none;
-}
-
-.yelira-trust-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-}
-
-.yelira-trust-item svg {
-    width: 20px;
-    height: 20px;
-    color: var(--yelira-taupe);
-}
-
-.yelira-trust-item span {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    white-space: nowrap;
-}
-
-/* ============================================================================
-   FLOATING ACTION BUTTON - Quick Add
-   ============================================================================ */
-
-.yelira-fab {
-    position: fixed;
-    bottom: 80px;
-    right: 16px;
-    width: 56px;
-    height: 56px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: var(--yelira-gold);
-    color: var(--yelira-charcoal);
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(196, 167, 125, 0.4);
-    z-index: 9998;
-    transition: all var(--transition-base);
-    -webkit-tap-highlight-color: transparent;
-}
-
-.yelira-fab:active {
-    transform: scale(0.9);
-}
-
-.yelira-fab svg {
-    width: 24px;
-    height: 24px;
-}
-
-/* ============================================================================
-   MOBILE RESPONSIVE OVERRIDES
-   ============================================================================ */
-
-@media (max-width: 768px) {
-    /* Show mobile nav */
-    .yelira-mobile-nav {
-        display: block;
-    }
-
-    /* Add padding for mobile nav */
-    body {
-        padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important;
-    }
-
-    /* Adjust footer margin */
-    .yelira-footer {
-        margin-bottom: 64px;
-    }
-
-    /* Hide desktop elements */
-    .yelira-header-actions .yelira-account {
-        display: none;
-    }
-
-    /* Sticky ATC on single product */
-    .single-product .yelira-sticky-atc {
-        display: block;
-    }
-
-    /* Back to top adjusted position */
-    .back-to-top {
-        bottom: calc(80px + env(safe-area-inset-bottom));
-        right: 16px;
-        width: 44px;
-        height: 44px;
-    }
-
-    /* Notification adjusted position */
-    .yelira-notification {
-        bottom: calc(140px + env(safe-area-inset-bottom));
-    }
-
-    /* Better spacing for mobile */
-    .yelira-container {
-        padding: 0 16px;
-    }
-
-    /* Hero adjustments */
-    .yelira-hero {
-        min-height: 70vh;
-    }
-
-    .yelira-hero-content {
-        padding: var(--space-2xl) var(--space-md);
-    }
-
-    .yelira-hero-cta {
-        flex-direction: column;
-        width: 100%;
-        padding: 0 16px;
-    }
-
-    .yelira-hero-cta .btn,
-    .yelira-hero-cta .yelira-btn {
-        width: 100%;
-        justify-content: center;
-        min-height: 48px;
-    }
-
-    /* Product grid 2 columns on mobile */
-    .woocommerce ul.products {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
-        padding: 0 !important;
-    }
-
-    /* Compact product cards */
-    .woocommerce ul.products li.product .woocommerce-loop-product__title {
-        font-size: var(--text-sm) !important;
-        margin: 8px 12px 4px !important;
-        line-height: 1.3 !important;
-    }
-
-    .woocommerce ul.products li.product .price {
-        font-size: var(--text-sm) !important;
-        margin: 0 12px 8px !important;
-    }
-
-    .yelira-product-category {
-        font-size: 10px !important;
-        margin: 8px 12px 2px !important;
-    }
-
-    /* Full width add to cart on mobile */
-    .woocommerce ul.products li.product .button,
-    .woocommerce ul.products li.product .add_to_cart_button {
-        width: calc(100% - 24px) !important;
-        margin: 0 12px 12px !important;
-        font-size: 10px !important;
-        padding: 10px 8px !important;
-    }
-
-    /* Features in 2 columns */
-    .yelira-features {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-        padding: 24px 16px;
-    }
-
-    .yelira-feature {
-        padding: 12px;
-        background: var(--yelira-white);
-        border-radius: var(--radius-lg);
-    }
-
-    .yelira-feature-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .yelira-feature-icon svg {
-        width: 22px;
-        height: 22px;
-    }
-
-    /* Categories horizontal scroll */
-    .yelira-categories-grid {
-        display: flex;
-        overflow-x: auto;
-        gap: 12px;
-        padding: 0 16px;
-        margin: 0 -16px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .yelira-categories-grid::-webkit-scrollbar {
-        display: none;
-    }
-
-    .yelira-category-card {
-        flex: 0 0 200px;
-        scroll-snap-align: start;
-        aspect-ratio: 3/4;
-    }
-
-    /* Collection cards stack */
-    .yelira-collection-card {
-        height: 300px;
-    }
-
-    /* Sections tighter spacing */
-    .yelira-section {
-        padding: 40px 16px;
-    }
-
-    .yelira-section-header {
-        margin-bottom: 24px;
-    }
-
-    .yelira-section-title {
-        font-size: var(--text-xl);
-    }
-}
-
-/* Small phones */
-@media (max-width: 375px) {
-    .woocommerce ul.products {
-        gap: 8px !important;
-    }
-
-    .woocommerce ul.products li.product .woocommerce-loop-product__title {
-        font-size: 13px !important;
-    }
-
-    .yelira-mobile-nav-item span {
-        font-size: 9px;
-    }
-
-    .yelira-logo-text {
-        font-size: var(--text-lg);
-        letter-spacing: 0.15em;
-    }
-}
-
-/* ============================================================================
-   SINGLE PRODUCT PAGE - Mobile Optimized
-   ============================================================================ */
-
-@media (max-width: 768px) {
-    .woocommerce div.product {
-        padding-bottom: 140px; /* Space for sticky ATC */
-    }
-
-    .woocommerce div.product div.images {
-        margin-bottom: 16px;
-    }
-
-    .woocommerce div.product .product_title {
-        font-size: var(--text-2xl) !important;
-        margin-bottom: 8px;
-    }
-
-    .woocommerce div.product p.price {
-        font-size: var(--text-lg) !important;
-        margin-bottom: 16px;
-    }
-
-    .woocommerce div.product .woocommerce-product-details__short-description {
-        font-size: var(--text-sm);
-        margin-bottom: 16px;
-    }
-
-    .woocommerce div.product form.cart {
-        display: none; /* Hide default, use sticky */
-    }
-
-    /* Product gallery improvements */
-    .woocommerce div.product div.images .woocommerce-product-gallery__wrapper {
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-    }
-
-    /* Tabs as accordion on mobile */
-    .woocommerce div.product .woocommerce-tabs {
-        margin-top: 24px;
-    }
-
-    .woocommerce div.product .woocommerce-tabs ul.tabs {
-        display: flex;
-        overflow-x: auto;
-        gap: 0;
-        padding: 0;
-        margin: 0 0 16px;
-        border-bottom: 1px solid var(--yelira-sand);
-    }
-
-    .woocommerce div.product .woocommerce-tabs ul.tabs li {
-        flex-shrink: 0;
-        margin: 0;
-        border: none;
-        background: none;
-    }
-
-    .woocommerce div.product .woocommerce-tabs ul.tabs li a {
-        padding: 12px 16px;
-        font-size: var(--text-sm);
-    }
-}
-
-/* ============================================================================
-   CATEGORIES MODAL - Mobile
-   ============================================================================ */
-
-.yelira-categories-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 10002;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.yelira-categories-modal.active {
-    opacity: 1;
-    visibility: visible;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.yelira-categories-modal-content {
-    width: 100%;
-    max-height: 85vh;
-    background: var(--yelira-white);
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-    transform: translateY(100%);
-    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.yelira-categories-modal.active .yelira-categories-modal-content {
-    transform: translateY(0);
-}
-
-.yelira-categories-modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 20px 16px;
-    border-bottom: 1px solid var(--yelira-sand);
-    flex-shrink: 0;
-}
-
-.yelira-categories-modal-header::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 4px;
-    background: var(--yelira-sand);
-    border-radius: 2px;
-}
-
-.yelira-categories-modal-header h3 {
-    font-family: var(--font-display);
-    font-size: var(--text-lg);
-    font-weight: 500;
-    color: var(--text-primary);
-    margin: 0;
-}
-
-.yelira-categories-modal-close {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--yelira-cream);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all var(--transition-base);
-}
-
-.yelira-categories-modal-close:active {
-    transform: scale(0.95);
-    background: var(--yelira-sand);
-}
-
-.yelira-categories-modal-body {
-    padding: 16px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
-.yelira-category-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 20px 12px;
-    background: var(--yelira-cream);
-    border-radius: var(--radius-lg);
-    text-decoration: none;
-    color: var(--text-primary);
-    transition: all var(--transition-base);
-    position: relative;
-    overflow: hidden;
-}
-
-.yelira-category-link.highlight {
-    background: linear-gradient(135deg, var(--yelira-gold) 0%, #d4b87a 100%);
-    color: var(--yelira-white);
-}
-
-.yelira-category-link:active {
-    transform: scale(0.97);
-}
-
-.yelira-category-link .category-icon {
-    font-size: 28px;
-    line-height: 1;
-}
-
-.yelira-category-link span:last-child {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* ============================================================================
-   MOBILE FULL-SCREEN SEARCH
-   ============================================================================ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE SEARCH - Full Screen Experience
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 .yelira-mobile-search {
     position: fixed;
     inset: 0;
-    z-index: 10003;
-    background: var(--yelira-white);
+    background: var(--color-white);
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-    display: flex;
-    flex-direction: column;
+    transition: all var(--duration-slow) var(--ease-out);
 }
 
 .yelira-mobile-search.active {
@@ -3189,27 +672,28 @@ button:active {
 .yelira-mobile-search-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 16px;
-    padding-top: calc(16px + env(safe-area-inset-top));
-    border-bottom: 1px solid var(--yelira-sand);
-    background: var(--yelira-white);
-    flex-shrink: 0;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    padding-top: calc(var(--space-4) + env(safe-area-inset-top));
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-cloud);
 }
 
 .yelira-mobile-search-form {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: var(--yelira-cream);
-    padding: 12px 16px;
-    border-radius: var(--radius-full);
+    gap: var(--space-3);
+    background: var(--color-snow);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-xl);
 }
 
 .yelira-mobile-search-form svg {
     flex-shrink: 0;
-    color: var(--text-muted);
+    width: 20px;
+    height: 20px;
+    color: var(--color-gray);
 }
 
 .yelira-mobile-search-form input {
@@ -3217,111 +701,1067 @@ button:active {
     border: none;
     background: none;
     font-size: var(--text-base);
-    color: var(--text-primary);
+    color: var(--color-charcoal);
     outline: none;
 }
 
-.yelira-mobile-search-form input::placeholder {
-    color: var(--text-muted);
-}
-
 .yelira-mobile-search-close {
-    background: none;
-    border: none;
     font-size: var(--text-sm);
     font-weight: 500;
-    color: var(--yelira-taupe);
-    cursor: pointer;
-    padding: 8px;
-    white-space: nowrap;
+    color: var(--color-taupe);
+    padding: var(--space-2);
 }
 
 .yelira-mobile-search-suggestions {
     flex: 1;
-    padding: 24px 16px;
+    padding: var(--space-6);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
 
 .yelira-mobile-search-suggestions h4 {
-    font-family: var(--font-display);
-    font-size: var(--text-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
     font-weight: 600;
-    color: var(--text-secondary);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 16px;
+    color: var(--color-gray);
+    margin-bottom: var(--space-4);
 }
 
 .yelira-search-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 32px;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
 }
 
 .yelira-search-tags a {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 18px;
-    background: var(--yelira-cream);
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-snow);
     border-radius: var(--radius-full);
     font-size: var(--text-sm);
     font-weight: 500;
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: all var(--transition-base);
+    color: var(--color-charcoal);
+    transition: all var(--duration-fast);
 }
 
 .yelira-search-tags a:active {
-    background: var(--yelira-sand);
+    background: var(--color-cloud);
     transform: scale(0.97);
-}
-
-.yelira-search-categories {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
 }
 
 .yelira-search-categories a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px;
-    background: var(--yelira-cream);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    color: var(--text-primary);
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--color-cloud);
     font-weight: 500;
-    transition: all var(--transition-base);
-}
-
-.yelira-search-categories a:active {
-    background: var(--yelira-sand);
+    color: var(--color-charcoal);
 }
 
 .yelira-search-categories a svg {
-    color: var(--text-muted);
+    width: 16px;
+    height: 16px;
+    color: var(--color-silver);
 }
 
-/* ============================================================================
-   RIPPLE EFFECT - Touch Feedback
-   ============================================================================ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   CATEGORIES MODAL - Bottom Sheet
+   ═══════════════════════════════════════════════════════════════════════════ */
 
+.yelira-categories-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: flex-end;
+    background: rgba(0,0,0,0);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--duration-base);
+}
+
+.yelira-categories-modal.active {
+    opacity: 1;
+    visibility: visible;
+    background: rgba(0,0,0,0.5);
+}
+
+.yelira-categories-modal-content {
+    width: 100%;
+    max-height: 80vh;
+    background: var(--color-white);
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    transform: translateY(100%);
+    transition: transform var(--duration-slow) var(--ease-out);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.yelira-categories-modal.active .yelira-categories-modal-content {
+    transform: translateY(0);
+}
+
+.yelira-categories-modal-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-5) var(--space-5) var(--space-4);
+    border-bottom: 1px solid var(--color-cloud);
+}
+
+.yelira-categories-modal-header::before {
+    content: '';
+    position: absolute;
+    top: var(--space-2);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 4px;
+    background: var(--color-mist);
+    border-radius: var(--radius-full);
+}
+
+.yelira-categories-modal-header h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 500;
+}
+
+.yelira-categories-modal-close {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-snow);
+    border-radius: var(--radius-full);
+    color: var(--color-slate);
+    transition: all var(--duration-fast);
+}
+
+.yelira-categories-modal-close:active {
+    background: var(--color-cloud);
+    transform: scale(0.95);
+}
+
+.yelira-categories-modal-body {
+    padding: var(--space-4);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+}
+
+.yelira-category-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-2);
+    background: var(--color-snow);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: all var(--duration-fast);
+}
+
+.yelira-category-link:active {
+    background: var(--color-cloud);
+    transform: scale(0.97);
+}
+
+.yelira-category-link.highlight {
+    background: linear-gradient(135deg, var(--color-taupe) 0%, var(--color-taupe-dark) 100%);
+    color: var(--color-white);
+}
+
+.yelira-category-link .category-icon {
+    font-size: 24px;
+}
+
+.yelira-category-link span:last-child {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STICKY ADD TO CART - Mobile Product Pages
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.yelira-sticky-atc {
+    position: fixed;
+    bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom));
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    padding: var(--space-3) var(--space-4);
+    border-top: 1px solid var(--color-cloud);
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+.yelira-sticky-atc.visible {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (min-width: 769px) {
+    .yelira-sticky-atc {
+        display: none !important;
+    }
+}
+
+.yelira-sticky-atc-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.yelira-sticky-atc-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.yelira-sticky-atc-name {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-charcoal);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+}
+
+.yelira-sticky-atc-price {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+}
+
+.yelira-sticky-atc-price .price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+}
+
+.yelira-sticky-atc-price del {
+    font-size: var(--text-xs);
+    color: var(--color-gray);
+}
+
+.yelira-sticky-atc-price ins {
+    text-decoration: none;
+    color: var(--color-sale);
+    font-weight: 500;
+}
+
+.yelira-sticky-atc-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    background: var(--color-charcoal);
+    color: var(--color-white);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+    transition: all var(--duration-fast);
+    white-space: nowrap;
+}
+
+.yelira-sticky-atc-btn:active {
+    transform: scale(0.97);
+    background: var(--color-graphite);
+}
+
+.yelira-sticky-atc-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.yelira-sticky-atc-btn-options {
+    background: var(--color-taupe);
+    text-decoration: none;
+}
+
+.yelira-sticky-atc-btn-disabled {
+    background: var(--color-mist);
+    color: var(--color-gray);
+    cursor: not-allowed;
+}
+
+.yelira-sticky-atc-btn .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: var(--color-white);
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   WOOCOMMERCE PRODUCT CARDS - Premium Style
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.woocommerce ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+@media (max-width: 1024px) {
+    .woocommerce ul.products {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-4);
+    }
+}
+
+@media (max-width: 768px) {
+    .woocommerce ul.products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-3);
+    }
+}
+
+.woocommerce ul.products li.product {
+    position: relative;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--duration-base) var(--ease-out);
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    float: none !important;
+}
+
+.woocommerce ul.products li.product:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Product Image */
+.woocommerce ul.products li.product a.woocommerce-LoopProduct-link {
+    display: block;
+}
+
+.woocommerce ul.products li.product .attachment-woocommerce_thumbnail,
+.woocommerce ul.products li.product img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.woocommerce ul.products li.product:hover .attachment-woocommerce_thumbnail {
+    transform: scale(1.03);
+}
+
+/* Secondary Image */
+.woocommerce ul.products li.product .secondary-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.woocommerce ul.products li.product:hover .secondary-image {
+    opacity: 1;
+}
+
+/* Product Info */
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-charcoal);
+    margin: var(--space-3) var(--space-3) var(--space-1) !important;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.woocommerce ul.products li.product .price {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    color: var(--color-charcoal);
+    margin: 0 var(--space-3) var(--space-3) !important;
+}
+
+.woocommerce ul.products li.product .price del {
+    font-size: var(--text-sm);
+    color: var(--color-gray);
+    margin-right: var(--space-2);
+}
+
+.woocommerce ul.products li.product .price ins {
+    text-decoration: none;
+    color: var(--color-sale);
+    font-weight: 500;
+}
+
+/* Category Label */
+.yelira-product-category {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-gray);
+    margin: var(--space-3) var(--space-3) 0;
+}
+
+/* Add to Cart Button */
+.woocommerce ul.products li.product .button,
+.woocommerce ul.products li.product .add_to_cart_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - var(--space-6));
+    margin: 0 var(--space-3) var(--space-3) !important;
+    padding: var(--space-3);
+    background: var(--color-charcoal);
+    color: var(--color-white);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: var(--radius-md);
+    transition: all var(--duration-fast);
+}
+
+.woocommerce ul.products li.product .button:hover {
+    background: var(--color-black);
+}
+
+/* Custom Badges */
+.yelira-badges {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    z-index: 2;
+}
+
+.yelira-badges span {
+    padding: var(--space-1) var(--space-3);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+}
+
+.badge-new {
+    background: var(--color-charcoal);
+    color: var(--color-white);
+}
+
+.badge-sale {
+    background: var(--color-sale);
+    color: var(--color-white);
+}
+
+.badge-low-stock {
+    background: var(--color-gold);
+    color: var(--color-white);
+}
+
+/* Hide default WooCommerce/Blocksy badges */
+.woocommerce span.onsale,
+span.onsale,
+.onsale {
+    display: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.yelira-hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-cream);
+    overflow: hidden;
+}
+
+.yelira-hero-bg {
+    position: absolute;
+    inset: 0;
+}
+
+.yelira-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.yelira-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+        rgba(0,0,0,0.1) 0%,
+        rgba(0,0,0,0.3) 100%
+    );
+}
+
+.yelira-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: var(--space-8);
+    max-width: 700px;
+}
+
+.yelira-hero-subtitle {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    opacity: 0.9;
+    margin-bottom: var(--space-4);
+}
+
+.yelira-hero-title {
+    font-family: var(--font-display);
+    font-size: var(--text-5xl);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--color-white);
+    margin-bottom: var(--space-6);
+    line-height: 1.1;
+}
+
+.yelira-hero-cta {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .yelira-hero {
+        min-height: 70vh;
+    }
+
+    .yelira-hero-cta {
+        flex-direction: column;
+        padding: 0 var(--space-4);
+    }
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+    transition: all var(--duration-base) var(--ease-out);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--color-white);
+    color: var(--color-charcoal);
+}
+
+.btn-primary:hover {
+    background: var(--color-charcoal);
+    color: var(--color-white);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--color-white);
+    border: 1px solid var(--color-white);
+}
+
+.btn-outline:hover {
+    background: var(--color-white);
+    color: var(--color-charcoal);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.yelira-section {
+    padding: var(--space-16) 0;
+}
+
+@media (max-width: 768px) {
+    .yelira-section {
+        padding: var(--space-10) 0;
+    }
+}
+
+.yelira-section-header {
+    text-align: center;
+    margin-bottom: var(--space-10);
+}
+
+.yelira-section-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    margin-bottom: var(--space-3);
+}
+
+.yelira-section-subtitle {
+    font-size: var(--text-base);
+    color: var(--color-gray);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.yelira-footer {
+    background: var(--color-charcoal);
+    color: var(--color-white);
+}
+
+.yelira-footer-newsletter {
+    padding: var(--space-12) 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.yelira-footer-newsletter h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    color: var(--color-white);
+    margin-bottom: var(--space-2);
+}
+
+.yelira-footer-newsletter p {
+    color: var(--color-silver);
+    margin-bottom: var(--space-6);
+}
+
+.yelira-newsletter-form {
+    display: flex;
+    gap: var(--space-3);
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.yelira-newsletter-form input {
+    flex: 1;
+    padding: var(--space-3) var(--space-5);
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius-full);
+    color: var(--color-white);
+    font-size: var(--text-sm);
+    outline: none;
+    transition: all var(--duration-fast);
+}
+
+.yelira-newsletter-form input:focus {
+    border-color: var(--color-taupe-light);
+}
+
+.yelira-newsletter-form input::placeholder {
+    color: var(--color-silver);
+}
+
+.yelira-newsletter-form button {
+    padding: var(--space-3) var(--space-6);
+    background: var(--color-taupe);
+    color: var(--color-white);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+    transition: all var(--duration-fast);
+}
+
+.yelira-newsletter-form button:hover {
+    background: var(--color-taupe-light);
+}
+
+@media (max-width: 768px) {
+    .yelira-newsletter-form {
+        flex-direction: column;
+    }
+}
+
+.yelira-footer-top {
+    padding: var(--space-12) 0;
+}
+
+.yelira-footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--space-10);
+}
+
+@media (max-width: 768px) {
+    .yelira-footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8);
+    }
+}
+
+.yelira-footer-col h4 {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    margin-bottom: var(--space-5);
+}
+
+.yelira-footer-brand {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-4);
+}
+
+.yelira-footer-col p {
+    color: var(--color-silver);
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    margin-bottom: var(--space-5);
+}
+
+.yelira-footer-links {
+    list-style: none;
+}
+
+.yelira-footer-links li {
+    margin-bottom: var(--space-3);
+}
+
+.yelira-footer-links a {
+    color: var(--color-silver);
+    font-size: var(--text-sm);
+    transition: color var(--duration-fast);
+}
+
+.yelira-footer-links a:hover {
+    color: var(--color-white);
+}
+
+.yelira-footer-social {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.yelira-social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--radius-full);
+    color: var(--color-white);
+    transition: all var(--duration-fast);
+}
+
+.yelira-social-icons a:hover {
+    background: var(--color-taupe);
+}
+
+.yelira-footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+    color: var(--color-silver);
+    font-size: var(--text-sm);
+}
+
+.yelira-footer-contact svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.yelira-footer-payments {
+    margin-top: var(--space-6);
+}
+
+.yelira-footer-payments h5 {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-silver);
+    margin-bottom: var(--space-3);
+}
+
+.yelira-payment-icons {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.yelira-payment-icons span {
+    padding: var(--space-1) var(--space-3);
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    font-weight: 500;
+}
+
+.yelira-footer-bottom {
+    padding: var(--space-6) 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.yelira-footer-bottom .yelira-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.yelira-footer-bottom p {
+    font-size: var(--text-xs);
+    color: var(--color-silver);
+}
+
+.yelira-footer-legal {
+    display: flex;
+    gap: var(--space-6);
+}
+
+.yelira-footer-legal a {
+    font-size: var(--text-xs);
+    color: var(--color-silver);
+    transition: color var(--duration-fast);
+}
+
+.yelira-footer-legal a:hover {
+    color: var(--color-white);
+}
+
+@media (max-width: 768px) {
+    .yelira-footer-bottom .yelira-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .yelira-footer {
+        padding-bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom));
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NOTIFICATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.yelira-notification {
+    position: fixed;
+    bottom: calc(var(--mobile-nav-height) + var(--space-4) + env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-5);
+    background: var(--color-charcoal);
+    color: var(--color-white);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-xl);
+    z-index: 1200;
+    opacity: 0;
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+.yelira-notification.is-visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.yelira-notification--error {
+    background: var(--color-error);
+}
+
+.yelira-notification--success {
+    background: var(--color-success);
+}
+
+@media (min-width: 769px) {
+    .yelira-notification {
+        bottom: var(--space-8);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BACK TO TOP
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.back-to-top {
+    position: fixed;
+    bottom: calc(var(--mobile-nav-height) + var(--space-4) + env(safe-area-inset-bottom));
+    right: var(--space-4);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-white);
+    color: var(--color-charcoal);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all var(--duration-base) var(--ease-out);
+    border: 1px solid var(--color-cloud);
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--color-charcoal);
+    color: var(--color-white);
+}
+
+@media (min-width: 769px) {
+    .back-to-top {
+        bottom: var(--space-8);
+        right: var(--space-8);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SINGLE PRODUCT PAGE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .woocommerce div.product {
+        padding-bottom: calc(80px + var(--mobile-nav-height));
+    }
+
+    .woocommerce div.product div.images {
+        margin-bottom: var(--space-4);
+    }
+
+    .woocommerce div.product .product_title {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl) !important;
+        font-weight: 500;
+        margin-bottom: var(--space-2);
+    }
+
+    .woocommerce div.product p.price {
+        font-family: var(--font-display);
+        font-size: var(--text-xl) !important;
+        margin-bottom: var(--space-4);
+    }
+
+    .woocommerce div.product form.cart {
+        display: block !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATIONS & TRANSITIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Page load fade in */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp var(--duration-slow) var(--ease-out) forwards;
+}
+
+/* Skeleton loading */
+.skeleton {
+    background: linear-gradient(90deg,
+        var(--color-snow) 0%,
+        var(--color-cloud) 50%,
+        var(--color-snow) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--radius-md);
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Ripple effect */
 .yelira-ripple {
     position: absolute;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0,0,0,0.1);
     width: 100px;
     height: 100px;
     margin-top: -50px;
     margin-left: -50px;
-    animation: ripple-effect 0.6s ease-out;
+    animation: ripple 0.6s ease-out;
     pointer-events: none;
 }
 
-@keyframes ripple-effect {
+@keyframes ripple {
     from {
         transform: scale(0);
         opacity: 1;
@@ -3332,53 +1772,30 @@ button:active {
     }
 }
 
-/* Touch active state */
+/* Touch feedback */
 .touch-active {
-    opacity: 0.9;
-    transform: scale(0.98);
+    opacity: 0.85;
 }
 
-/* ============================================================================
-   LOADING SPINNER
-   ============================================================================ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   UTILITY CLASSES
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-.yelira-sticky-atc-btn .spinner {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: var(--yelira-white);
-    animation: spin 0.8s linear infinite;
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
 
-.yelira-sticky-atc-btn.loading {
-    pointer-events: none;
-    opacity: 0.8;
-}
-
-/* ============================================================================
-   SINGLE PRODUCT - Show cart form on desktop only
-   ============================================================================ */
-
-@media (min-width: 769px) {
-    .woocommerce div.product form.cart {
-        display: flex !important;
-    }
-}
-
-/* ============================================================================
-   MOBILE NAV HIDDEN STATE
-   ============================================================================ */
-
-.yelira-mobile-nav.hidden {
-    transform: translateY(100%);
-    opacity: 0;
-}
-
-/* ============================================================================
+/* ═══════════════════════════════════════════════════════════════════════════
    PRINT STYLES
-   ============================================================================ */
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 @media print {
     .yelira-promo-bar,
@@ -3386,15 +1803,14 @@ button:active {
     .yelira-footer,
     .yelira-mobile-nav,
     .yelira-sticky-atc,
-    .back-to-top,
-    .yelira-notification,
+    .yelira-mobile-search,
     .yelira-categories-modal,
-    .yelira-mobile-search {
+    .back-to-top,
+    .yelira-notification {
         display: none !important;
     }
 
     body {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
+        padding: 0 !important;
     }
 }
