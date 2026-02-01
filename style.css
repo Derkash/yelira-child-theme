@@ -1051,6 +1051,13 @@ input[type="submit"]:hover,
     color: var(--yelira-white) !important;
 }
 
+/* Hide default WooCommerce sale badge (we use custom badges) */
+.woocommerce ul.products li.product .onsale,
+.woocommerce span.onsale,
+.onsale {
+    display: none !important;
+}
+
 /* Quick Actions */
 .yelira-quick-actions {
     position: absolute;
