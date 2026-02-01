@@ -186,6 +186,57 @@ function yelira_custom_badges() {
 add_action('woocommerce_before_shop_loop_item_title', 'yelira_custom_badges', 5);
 
 /**
+ * Ajouter les badges sur les pages produit individuelles
+ */
+function yelira_single_product_badges() {
+    global $product;
+
+    if (!$product || !is_a($product, 'WC_Product')) {
+        $product = wc_get_product(get_the_ID());
+    }
+
+    if (!$product) {
+        return;
+    }
+
+    echo '<div class="yelira-badges yelira-badges-single">';
+
+    // Badge "Nouveau" (produits de moins de 30 jours) - seulement si pas en promo
+    if (!$product->is_on_sale()) {
+        $post_date = get_the_date('Y-m-d', $product->get_id());
+        $days_ago = (time() - strtotime($post_date)) / DAY_IN_SECONDS;
+
+        if ($days_ago < 30) {
+            echo '<span class="badge-new">Nouveau</span>';
+        }
+    }
+
+    // Badge "Soldes" (si en promotion)
+    if ($product->is_on_sale()) {
+        if ($product->is_type('variable')) {
+            $regular_price = (float) $product->get_variation_regular_price('min');
+            $sale_price = (float) $product->get_variation_sale_price('min');
+        } else {
+            $regular_price = (float) $product->get_regular_price();
+            $sale_price = (float) $product->get_sale_price();
+        }
+
+        if ($regular_price > 0 && $sale_price > 0) {
+            $percentage = round((($regular_price - $sale_price) / $regular_price) * 100);
+            echo '<span class="badge-sale">-' . $percentage . '%</span>';
+        }
+    }
+
+    // Badge "Derniers articles" (stock faible)
+    if ($product->managing_stock() && $product->get_stock_quantity() <= 5 && $product->get_stock_quantity() > 0) {
+        echo '<span class="badge-low-stock">Derniers articles</span>';
+    }
+
+    echo '</div>';
+}
+add_action('woocommerce_before_single_product_summary', 'yelira_single_product_badges', 5);
+
+/**
  * Supprimer le badge "Promo" par défaut de WooCommerce
  */
 remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);

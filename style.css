@@ -1051,9 +1051,15 @@ input[type="submit"]:hover,
     color: var(--yelira-white) !important;
 }
 
-/* Hide default WooCommerce & Blocksy sale badges (we use custom badges) */
+/* Hide default WooCommerce & Blocksy sale badges everywhere (we use custom badges) */
 .woocommerce ul.products li.product .onsale,
 .woocommerce span.onsale,
+.woocommerce div.product .onsale,
+.woocommerce div.product span.onsale,
+.woocommerce-product-gallery .onsale,
+.woocommerce-product-gallery__wrapper .onsale,
+.ct-product-view .onsale,
+.product-entry-wrapper .onsale,
 .onsale,
 span.onsale,
 span.onsale[data-shape],
@@ -1062,7 +1068,14 @@ figure .onsale,
 figure > .onsale,
 .product figure .onsale,
 li.product .onsale,
-li.product figure span.onsale {
+li.product figure span.onsale,
+.single-product .onsale,
+.type-product .onsale,
+.product .onsale,
+div.product .onsale,
+.summary .onsale,
+.images .onsale,
+.woocommerce-product-gallery .onsale {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -1071,6 +1084,20 @@ li.product figure span.onsale {
     overflow: hidden !important;
     position: absolute !important;
     left: -9999px !important;
+    clip: rect(0, 0, 0, 0) !important;
+    pointer-events: none !important;
+}
+
+/* Badges on single product pages */
+.yelira-badges-single {
+    position: absolute !important;
+    top: var(--space-md) !important;
+    left: var(--space-md) !important;
+    z-index: 10 !important;
+}
+
+.woocommerce div.product div.images {
+    position: relative;
 }
 
 /* Quick Actions */
