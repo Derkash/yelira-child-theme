@@ -802,3 +802,256 @@ function yelira_footer_styles() {
     // All footer CSS has been moved to style.css
 }
 add_action('wp_head', 'yelira_footer_styles', 999);
+
+/**
+ * ============================================================================
+ * MOBILE UX - NAVIGATION & STICKY ADD TO CART
+ * ============================================================================
+ */
+
+/**
+ * Navigation mobile en bas de l'écran (style app)
+ */
+function yelira_mobile_nav() {
+    ?>
+    <nav class="yelira-mobile-nav" id="yelira-mobile-nav" aria-label="Navigation mobile">
+        <a href="<?php echo home_url(); ?>" class="yelira-mobile-nav-item <?php echo is_front_page() ? 'active' : ''; ?>">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span>Accueil</span>
+        </a>
+        <button class="yelira-mobile-nav-item" id="mobile-nav-search" aria-label="Rechercher">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <span>Recherche</span>
+        </button>
+        <button class="yelira-mobile-nav-item" id="mobile-nav-categories" aria-label="Catégories">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+            <span>Catégories</span>
+        </button>
+        <a href="<?php echo wc_get_page_permalink('myaccount'); ?>" class="yelira-mobile-nav-item <?php echo is_account_page() ? 'active' : ''; ?>">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>Compte</span>
+        </a>
+        <a href="<?php echo wc_get_cart_url(); ?>" class="yelira-mobile-nav-item <?php echo is_cart() ? 'active' : ''; ?>">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span>Panier</span>
+            <?php if (WC()->cart && WC()->cart->get_cart_contents_count() > 0) : ?>
+                <span class="yelira-mobile-nav-badge"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+            <?php endif; ?>
+        </a>
+    </nav>
+
+    <!-- Modal Catégories Mobile -->
+    <div class="yelira-categories-modal" id="yelira-categories-modal">
+        <div class="yelira-categories-modal-content">
+            <div class="yelira-categories-modal-header">
+                <h3>Catégories</h3>
+                <button class="yelira-categories-modal-close" id="yelira-categories-modal-close" aria-label="Fermer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="yelira-categories-modal-body">
+                <a href="/categorie-produit/soldes/" class="yelira-category-link highlight">
+                    <span class="category-icon">🏷️</span>
+                    <span>SOLDES</span>
+                </a>
+                <a href="/categorie-produit/nouveautes/" class="yelira-category-link highlight">
+                    <span class="category-icon">✨</span>
+                    <span>NOUVEAUTÉS</span>
+                </a>
+                <a href="/categorie-produit/abayas/" class="yelira-category-link">
+                    <span class="category-icon">👗</span>
+                    <span>Abayas</span>
+                </a>
+                <a href="/categorie-produit/hijabs/" class="yelira-category-link">
+                    <span class="category-icon">🧕</span>
+                    <span>Hijabs</span>
+                </a>
+                <a href="/categorie-produit/jilbabs/" class="yelira-category-link">
+                    <span class="category-icon">👘</span>
+                    <span>Jilbabs</span>
+                </a>
+                <a href="/categorie-produit/khimar/" class="yelira-category-link">
+                    <span class="category-icon">🎀</span>
+                    <span>Khimar</span>
+                </a>
+                <a href="/categorie-produit/robes/" class="yelira-category-link">
+                    <span class="category-icon">👚</span>
+                    <span>Robes</span>
+                </a>
+                <a href="/categorie-produit/burkini/" class="yelira-category-link">
+                    <span class="category-icon">🏊‍♀️</span>
+                    <span>Burkini</span>
+                </a>
+                <a href="/categorie-produit/pret-a-porter/" class="yelira-category-link">
+                    <span class="category-icon">👕</span>
+                    <span>Prêt-à-porter</span>
+                </a>
+                <a href="/categorie-produit/homme/" class="yelira-category-link">
+                    <span class="category-icon">🧔</span>
+                    <span>Homme</span>
+                </a>
+                <a href="/categorie-produit/enfant/" class="yelira-category-link">
+                    <span class="category-icon">👶</span>
+                    <span>Enfant</span>
+                </a>
+                <a href="/categorie-produit/priere/" class="yelira-category-link">
+                    <span class="category-icon">🕌</span>
+                    <span>Prière</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+add_action('wp_footer', 'yelira_mobile_nav', 50);
+
+/**
+ * Sticky Add to Cart pour pages produit mobile
+ */
+function yelira_sticky_add_to_cart() {
+    if (!is_product()) {
+        return;
+    }
+
+    global $product;
+
+    if (!$product || !is_a($product, 'WC_Product')) {
+        $product = wc_get_product(get_the_ID());
+    }
+
+    if (!$product) {
+        return;
+    }
+
+    $price_html = $product->get_price_html();
+    ?>
+    <div class="yelira-sticky-atc" id="yelira-sticky-atc">
+        <div class="yelira-sticky-atc-inner">
+            <div class="yelira-sticky-atc-info">
+                <span class="yelira-sticky-atc-name"><?php echo esc_html(wp_trim_words($product->get_name(), 4)); ?></span>
+                <span class="yelira-sticky-atc-price"><?php echo $price_html; ?></span>
+            </div>
+            <?php if ($product->is_type('simple') && $product->is_in_stock()) : ?>
+                <button type="button" class="yelira-sticky-atc-btn" data-product-id="<?php echo $product->get_id(); ?>">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 0 1-8 0"/>
+                    </svg>
+                    Ajouter
+                </button>
+            <?php elseif ($product->is_type('variable')) : ?>
+                <a href="#product-options" class="yelira-sticky-atc-btn yelira-sticky-atc-btn-options">
+                    Voir options
+                </a>
+            <?php elseif (!$product->is_in_stock()) : ?>
+                <span class="yelira-sticky-atc-btn yelira-sticky-atc-btn-disabled">Épuisé</span>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php
+}
+add_action('wp_footer', 'yelira_sticky_add_to_cart', 51);
+
+/**
+ * Recherche mobile plein écran
+ */
+function yelira_mobile_search() {
+    ?>
+    <div class="yelira-mobile-search" id="yelira-mobile-search">
+        <div class="yelira-mobile-search-header">
+            <form role="search" method="get" action="<?php echo home_url('/'); ?>" class="yelira-mobile-search-form">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="search" name="s" placeholder="Rechercher un produit..." autocomplete="off" id="yelira-mobile-search-input">
+                <input type="hidden" name="post_type" value="product">
+            </form>
+            <button class="yelira-mobile-search-close" id="yelira-mobile-search-close" aria-label="Fermer">
+                Annuler
+            </button>
+        </div>
+        <div class="yelira-mobile-search-suggestions">
+            <h4>Recherches populaires</h4>
+            <div class="yelira-search-tags">
+                <a href="<?php echo home_url('/?s=abaya&post_type=product'); ?>">Abaya</a>
+                <a href="<?php echo home_url('/?s=hijab&post_type=product'); ?>">Hijab</a>
+                <a href="<?php echo home_url('/?s=jilbab&post_type=product'); ?>">Jilbab</a>
+                <a href="<?php echo home_url('/?s=khimar&post_type=product'); ?>">Khimar</a>
+                <a href="<?php echo home_url('/?s=burkini&post_type=product'); ?>">Burkini</a>
+                <a href="<?php echo home_url('/?s=robe&post_type=product'); ?>">Robe</a>
+            </div>
+            <h4>Catégories</h4>
+            <div class="yelira-search-categories">
+                <a href="/categorie-produit/abayas/">
+                    <span>Abayas</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+                <a href="/categorie-produit/hijabs/">
+                    <span>Hijabs</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+                <a href="/categorie-produit/jilbabs/">
+                    <span>Jilbabs</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+                <a href="/categorie-produit/robes/">
+                    <span>Robes</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+add_action('wp_footer', 'yelira_mobile_search', 52);
+
+/**
+ * Mettre à jour le compteur panier mobile via AJAX
+ */
+function yelira_mobile_cart_fragments($fragments) {
+    ob_start();
+    ?>
+    <span class="yelira-mobile-nav-badge"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+    <?php
+    $fragments['.yelira-mobile-nav-badge'] = ob_get_clean();
+
+    return $fragments;
+}
+add_filter('woocommerce_add_to_cart_fragments', 'yelira_mobile_cart_fragments');
+
+/**
+ * Body class pour identifier mobile
+ */
+function yelira_body_classes($classes) {
+    if (wp_is_mobile()) {
+        $classes[] = 'yelira-is-mobile';
+    }
+    if (is_product()) {
+        $classes[] = 'yelira-single-product';
+    }
+    return $classes;
+}
+add_filter('body_class', 'yelira_body_classes');

@@ -29,6 +29,12 @@
             this.smoothScrollLinks();
             this.lazyLoadImages();
             this.animateOnScroll();
+            // Mobile UX enhancements
+            this.mobileNavigation();
+            this.stickyAddToCart();
+            this.mobileSearch();
+            this.categoriesModal();
+            this.touchFeedback();
         },
 
         /**
@@ -442,6 +448,303 @@
                 el.style.transition = `opacity ${this.config.animationDuration}ms ease, transform ${this.config.animationDuration}ms ease`;
                 animateObserver.observe(el);
             });
+        },
+
+        /**
+         * Mobile Bottom Navigation
+         */
+        mobileNavigation: function() {
+            const mobileNav = document.getElementById('yelira-mobile-nav');
+            if (!mobileNav) return;
+
+            // Hide mobile nav when scrolling down, show when scrolling up
+            let lastScrollY = window.scrollY;
+            let ticking = false;
+
+            const updateNavVisibility = () => {
+                const currentScrollY = window.scrollY;
+
+                // Only apply on mobile
+                if (window.innerWidth > 768) {
+                    mobileNav.classList.remove('hidden');
+                    ticking = false;
+                    return;
+                }
+
+                // Near bottom of page - always show
+                const nearBottom = (window.innerHeight + currentScrollY) >= document.body.offsetHeight - 100;
+
+                if (nearBottom) {
+                    mobileNav.classList.remove('hidden');
+                } else if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                    // Scrolling down & past threshold - hide
+                    mobileNav.classList.add('hidden');
+                } else {
+                    // Scrolling up - show
+                    mobileNav.classList.remove('hidden');
+                }
+
+                lastScrollY = currentScrollY;
+                ticking = false;
+            };
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateNavVisibility);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            // Search button triggers mobile search
+            const searchBtn = document.getElementById('mobile-nav-search');
+            if (searchBtn) {
+                searchBtn.addEventListener('click', () => {
+                    const mobileSearch = document.getElementById('yelira-mobile-search');
+                    if (mobileSearch) {
+                        mobileSearch.classList.add('active');
+                        const input = mobileSearch.querySelector('input[type="search"]');
+                        if (input) setTimeout(() => input.focus(), 300);
+                    }
+                });
+            }
+
+            // Categories button triggers modal
+            const categoriesBtn = document.getElementById('mobile-nav-categories');
+            if (categoriesBtn) {
+                categoriesBtn.addEventListener('click', () => {
+                    const modal = document.getElementById('yelira-categories-modal');
+                    if (modal) {
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            }
+        },
+
+        /**
+         * Sticky Add to Cart for Product Pages
+         */
+        stickyAddToCart: function() {
+            const stickyAtc = document.getElementById('yelira-sticky-atc');
+            if (!stickyAtc) return;
+
+            // Find the main add to cart button
+            const mainAtcButton = document.querySelector('.single_add_to_cart_button, form.cart .button');
+            if (!mainAtcButton) return;
+
+            let ticking = false;
+
+            const updateStickyVisibility = () => {
+                // Only on mobile
+                if (window.innerWidth > 768) {
+                    stickyAtc.classList.remove('visible');
+                    ticking = false;
+                    return;
+                }
+
+                const buttonRect = mainAtcButton.getBoundingClientRect();
+                const isButtonVisible = buttonRect.top < window.innerHeight && buttonRect.bottom > 0;
+
+                if (!isButtonVisible && window.scrollY > 300) {
+                    stickyAtc.classList.add('visible');
+                } else {
+                    stickyAtc.classList.remove('visible');
+                }
+
+                ticking = false;
+            };
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateStickyVisibility);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            // Initial check
+            updateStickyVisibility();
+
+            // Handle sticky add to cart button click (AJAX)
+            const stickyBtn = stickyAtc.querySelector('.yelira-sticky-atc-btn[data-product-id]');
+            if (stickyBtn) {
+                stickyBtn.addEventListener('click', function() {
+                    const productId = this.dataset.productId;
+                    const btn = this;
+
+                    btn.classList.add('loading');
+                    btn.innerHTML = '<span class="spinner"></span>';
+
+                    $.ajax({
+                        url: wc_add_to_cart_params.ajax_url,
+                        type: 'POST',
+                        data: {
+                            action: 'woocommerce_add_to_cart',
+                            product_id: productId,
+                            quantity: 1
+                        },
+                        success: function(response) {
+                            if (response.error) {
+                                YELIRA.showNotification('Erreur lors de l\'ajout', 'error');
+                            } else {
+                                $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $(btn)]);
+                                btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Ajouté!';
+                                setTimeout(() => {
+                                    btn.classList.remove('loading');
+                                    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Ajouter';
+                                }, 2000);
+                            }
+                        },
+                        error: function() {
+                            YELIRA.showNotification('Erreur de connexion', 'error');
+                            btn.classList.remove('loading');
+                            btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Ajouter';
+                        }
+                    });
+                });
+            }
+
+            // Scroll to options for variable products
+            const optionsBtn = stickyAtc.querySelector('.yelira-sticky-atc-btn-options');
+            if (optionsBtn) {
+                optionsBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const variations = document.querySelector('.variations, .product-type-variable form.cart');
+                    if (variations) {
+                        const headerOffset = 150;
+                        const elementPosition = variations.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        },
+
+        /**
+         * Mobile Full-Screen Search
+         */
+        mobileSearch: function() {
+            const mobileSearch = document.getElementById('yelira-mobile-search');
+            if (!mobileSearch) return;
+
+            const closeBtn = document.getElementById('yelira-mobile-search-close');
+            const input = document.getElementById('yelira-mobile-search-input');
+
+            const closeSearch = () => {
+                mobileSearch.classList.remove('active');
+                document.body.style.overflow = '';
+                if (input) input.value = '';
+            };
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeSearch);
+            }
+
+            // Close on escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileSearch.classList.contains('active')) {
+                    closeSearch();
+                }
+            });
+
+            // Also trigger from header search on mobile
+            const headerSearchToggle = document.getElementById('yelira-search-toggle');
+            if (headerSearchToggle) {
+                headerSearchToggle.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        mobileSearch.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                        if (input) setTimeout(() => input.focus(), 300);
+                    }
+                });
+            }
+        },
+
+        /**
+         * Categories Modal
+         */
+        categoriesModal: function() {
+            const modal = document.getElementById('yelira-categories-modal');
+            if (!modal) return;
+
+            const closeBtn = document.getElementById('yelira-categories-modal-close');
+
+            const closeModal = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+
+            // Close on backdrop click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Close on escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // Close after clicking a category link
+            const categoryLinks = modal.querySelectorAll('.yelira-category-link');
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    closeModal();
+                });
+            });
+        },
+
+        /**
+         * Touch Feedback (ripple effect)
+         */
+        touchFeedback: function() {
+            // Only on touch devices
+            if (!('ontouchstart' in window)) return;
+
+            const interactiveElements = document.querySelectorAll('.yelira-mobile-nav-item, .yelira-category-link, .add_to_cart_button, .yelira-sticky-atc-btn');
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('touchstart', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.touches[0].clientX - rect.left;
+                    const y = e.touches[0].clientY - rect.top;
+
+                    const ripple = document.createElement('span');
+                    ripple.className = 'yelira-ripple';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+
+                    this.appendChild(ripple);
+
+                    setTimeout(() => ripple.remove(), 600);
+                }, { passive: true });
+            });
+
+            // Add active state feedback
+            document.addEventListener('touchstart', (e) => {
+                const target = e.target.closest('.product, .yelira-mobile-nav-item, .yelira-category-link');
+                if (target) {
+                    target.classList.add('touch-active');
+                }
+            }, { passive: true });
+
+            document.addEventListener('touchend', () => {
+                document.querySelectorAll('.touch-active').forEach(el => {
+                    el.classList.remove('touch-active');
+                });
+            }, { passive: true });
         }
     };
 
