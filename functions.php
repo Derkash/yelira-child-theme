@@ -237,9 +237,30 @@ function yelira_single_product_badges() {
 add_action('woocommerce_before_single_product_summary', 'yelira_single_product_badges', 5);
 
 /**
- * Supprimer le badge "Promo" par défaut de WooCommerce
+ * Supprimer le badge "Promo" par défaut de WooCommerce et Blocksy
  */
+// WooCommerce default hooks
 remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
+remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10);
+
+// Blocksy hooks - remove sale badge
+add_action('init', function() {
+    // Remove from loop
+    remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
+    // Remove from single product
+    remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10);
+    remove_action('woocommerce_product_thumbnails', 'woocommerce_show_product_sale_flash', 10);
+});
+
+// Filter to completely disable sale flash
+add_filter('woocommerce_sale_flash', '__return_empty_string');
+
+// Blocksy specific - disable sale badge
+add_filter('blocksy:woocommerce:sale-flash:enabled', '__return_false');
+add_filter('blocksy:woocommerce:product-card:sale-flash', '__return_false');
+
+// Additional Blocksy filter
+add_filter('theme_mod_has_sale_badge', '__return_false');
 
 /**
  * ============================================================================
