@@ -116,6 +116,106 @@ Text Domain: yelira
     --radius-sm: 2px;
     --radius-md: 4px;
     --radius-lg: 8px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+}
+
+/* ============================================================================
+   BLOCKSY OVERRIDE - FORCER NOS ÉLÉMENTS
+   Priority: !important sur tout pour surpasser Blocksy
+   ============================================================================ */
+
+/* MASQUER COMPLÈTEMENT LE HEADER/FOOTER BLOCKSY */
+header[data-id],
+header.ct-header,
+.ct-header,
+.ct-header-container,
+header.site-header:not(.yelira-header),
+.site-header:not(.yelira-header),
+[class*="ct-header"],
+.ct-drawer-canvas,
+footer.ct-footer,
+.ct-footer,
+footer[data-id],
+.ct-above-footer,
+.ct-prefooter,
+[class*="ct-footer"],
+.ct-offcanvas,
+.ct-panel {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    pointer-events: none !important;
+}
+
+/* FORCER L'AFFICHAGE DE NOS ÉLÉMENTS YELIRA */
+.yelira-promo-bar,
+.yelira-header,
+.yelira-footer,
+.yelira-mobile-nav,
+.yelira-sticky-atc,
+.yelira-mobile-search,
+.yelira-categories-modal {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Spécifiquement pour la navigation mobile - afficher sur mobile seulement */
+.yelira-mobile-nav {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .yelira-mobile-nav {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Spécifiquement pour le sticky ATC - caché par défaut */
+.yelira-sticky-atc {
+    display: none !important;
+}
+
+.yelira-sticky-atc.visible {
+    display: block !important;
+}
+
+/* Search et modal - cachés par défaut, affichés quand .active */
+.yelira-mobile-search,
+.yelira-categories-modal {
+    display: flex !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.yelira-mobile-search.active,
+.yelira-categories-modal.active {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* Reset body padding de Blocksy */
+body.blocksy-theme,
+body {
+    margin-top: 0 !important;
+}
+
+/* Assurer que le contenu principal a le bon padding */
+main,
+.site-main,
+.ct-container,
+#main,
+.main-content {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 /* ============================================================================
@@ -2042,12 +2142,22 @@ footer.ct-footer,
     bottom: 0;
     left: 0;
     right: 0;
-    height: 64px;
+    height: calc(64px + env(safe-area-inset-bottom));
     background: var(--yelira-white);
     border-top: 1px solid var(--yelira-sand);
     z-index: 10000;
     padding-bottom: env(safe-area-inset-bottom);
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    /* Flex container pour les items directement dans nav */
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.yelira-mobile-nav.hidden {
+    transform: translateY(100%);
+    opacity: 0;
 }
 
 .yelira-mobile-nav-inner {
@@ -2057,6 +2167,7 @@ footer.ct-footer,
     height: 64px;
     max-width: 500px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .yelira-mobile-nav-item {
@@ -2065,12 +2176,17 @@ footer.ct-footer,
     align-items: center;
     justify-content: center;
     gap: 4px;
-    padding: 8px 16px;
+    padding: 8px 12px;
     text-decoration: none;
     color: var(--text-muted);
     transition: all var(--transition-fast);
     position: relative;
     -webkit-tap-highlight-color: transparent;
+    /* Reset pour les buttons */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .yelira-mobile-nav-item.active {
@@ -2094,7 +2210,8 @@ footer.ct-footer,
     letter-spacing: 0.02em;
 }
 
-.yelira-mobile-nav-item .nav-badge {
+.yelira-mobile-nav-item .nav-badge,
+.yelira-mobile-nav-item .yelira-mobile-nav-badge {
     position: absolute;
     top: 2px;
     right: 8px;
@@ -2143,20 +2260,58 @@ footer.ct-footer,
     padding-bottom: calc(12px + env(safe-area-inset-bottom));
 }
 
+.yelira-sticky-atc.visible,
 .yelira-sticky-atc.is-visible {
+    display: block !important;
     transform: translateY(0);
 }
 
 .yelira-sticky-atc-inner {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
     max-width: 500px;
     margin: 0 auto;
 }
 
+.yelira-sticky-atc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.yelira-sticky-atc-name {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .yelira-sticky-atc-price {
     flex-shrink: 0;
+}
+
+.yelira-sticky-atc-price .price {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.yelira-sticky-atc-price .price del {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-right: 4px;
+}
+
+.yelira-sticky-atc-price .price ins {
+    text-decoration: none;
+    color: var(--yelira-red);
 }
 
 .yelira-sticky-atc-price .current-price {
@@ -2199,6 +2354,22 @@ footer.ct-footer,
 .yelira-sticky-atc-btn svg {
     width: 18px;
     height: 18px;
+}
+
+.yelira-sticky-atc-btn-options {
+    background: var(--yelira-taupe);
+    text-decoration: none;
+}
+
+.yelira-sticky-atc-btn-disabled {
+    background: var(--yelira-sand);
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+.yelira-sticky-atc-btn-disabled:active {
+    transform: none;
+    background: var(--yelira-sand);
 }
 
 /* ============================================================================

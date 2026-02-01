@@ -19,10 +19,45 @@ define('YELIRA_DIR', get_stylesheet_directory());
 define('YELIRA_URI', get_stylesheet_directory_uri());
 
 /**
+ * ============================================================================
+ * DÉSACTIVER LES ÉLÉMENTS BLOCKSY QUI INTERFÈRENT
+ * ============================================================================
+ */
+
+/**
+ * Désactiver le header/footer Blocksy et garder seulement WooCommerce
+ */
+function yelira_disable_blocksy_elements() {
+    // Retirer le header Blocksy
+    remove_action('blocksy:header:before', 'blocksy_output_header', 10);
+    remove_action('blocksy:header', 'blocksy_output_header', 10);
+
+    // Retirer le footer Blocksy
+    remove_action('blocksy:footer:before', 'blocksy_output_footer', 10);
+    remove_action('blocksy:footer', 'blocksy_output_footer', 10);
+
+    // Retirer les éléments de navigation Blocksy
+    remove_action('blocksy:header:offcanvas:start', 'blocksy_output_offcanvas_navigation', 10);
+}
+add_action('wp', 'yelira_disable_blocksy_elements', 0);
+
+/**
+ * Désactiver les styles Blocksy qui interfèrent (garder WooCommerce)
+ */
+function yelira_dequeue_blocksy_styles() {
+    // Désactiver les styles header/footer de Blocksy
+    wp_dequeue_style('blocksy-header-styles');
+    wp_dequeue_style('blocksy-footer-styles');
+
+    // Note: On garde blocksy-style pour le support WooCommerce de base
+}
+add_action('wp_enqueue_scripts', 'yelira_dequeue_blocksy_styles', 100);
+
+/**
  * Charger les styles du thème parent et enfant
  */
 function yelira_enqueue_styles() {
-    // Style du thème parent
+    // Style du thème parent (minimal, pour WooCommerce)
     wp_enqueue_style(
         'blocksy-style',
         get_template_directory_uri() . '/style.css',
@@ -30,12 +65,12 @@ function yelira_enqueue_styles() {
         YELIRA_VERSION
     );
 
-    // Style du thème enfant
+    // Style du thème enfant - PRIORITÉ HAUTE
     wp_enqueue_style(
         'yelira-style',
         get_stylesheet_uri(),
         array('blocksy-style'),
-        YELIRA_VERSION
+        YELIRA_VERSION . '.' . time() // Force refresh pendant dev
     );
 
     // Google Fonts - Playfair Display + DM Sans
