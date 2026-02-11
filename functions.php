@@ -20,6 +20,74 @@ define('YELIRA_URI', get_stylesheet_directory_uri());
 
 /**
  * ============================================================================
+ * MODE HEADLESS - BLOQUER L'ACCÈS PUBLIC AU FRONTEND
+ * WordPress sert uniquement de backend API. Le frontend public est sur Next.js.
+ * ============================================================================
+ */
+
+/**
+ * Bloquer l'indexation par les moteurs de recherche (header HTTP)
+ */
+function yelira_block_indexing() {
+    if (!is_admin()) {
+        header('X-Robots-Tag: noindex, nofollow, noarchive', true);
+    }
+}
+add_action('send_headers', 'yelira_block_indexing');
+
+/**
+ * Ajouter la meta noindex dans le <head>
+ */
+function yelira_noindex_meta() {
+    echo '<meta name="robots" content="noindex, nofollow, noarchive">' . "\n";
+}
+add_action('wp_head', 'yelira_noindex_meta', 1);
+
+/**
+ * Remplacer le robots.txt pour bloquer tous les robots
+ */
+function yelira_custom_robots_txt($output, $public) {
+    $output  = "User-agent: *\n";
+    $output .= "Disallow: /\n";
+    return $output;
+}
+add_filter('robots_txt', 'yelira_custom_robots_txt', 10, 2);
+
+/**
+ * Bloquer l'accès au frontend WordPress.
+ * Seuls wp-admin, wp-login, REST API, AJAX, wp-cron et deploy sont accessibles.
+ * Les fichiers statiques (images, CSS, JS) ne passent pas par WordPress.
+ */
+function yelira_block_frontend_access() {
+    if (is_admin()) {
+        return;
+    }
+
+    $request_uri = $_SERVER['REQUEST_URI'];
+
+    $allowed_patterns = array(
+        '/wp-admin',
+        '/wp-login',
+        '/wp-json',
+        '/wp-cron',
+        'admin-ajax.php',
+        '/xmlrpc.php',
+        '/deploy.php',
+    );
+
+    foreach ($allowed_patterns as $pattern) {
+        if (strpos($request_uri, $pattern) !== false) {
+            return;
+        }
+    }
+
+    wp_redirect(admin_url());
+    exit;
+}
+add_action('template_redirect', 'yelira_block_frontend_access');
+
+/**
+ * ============================================================================
  * DÉSACTIVER LES ÉLÉMENTS BLOCKSY QUI INTERFÈRENT
  * ============================================================================
  */
