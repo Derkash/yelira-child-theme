@@ -411,6 +411,27 @@ add_action('wp_head', 'yelira_inline_critical_css', 999);
  */
 
 /**
+ * Bloquer l'indexation de wp.yelira.fr par les moteurs de recherche
+ * Toutes les pages du sous-domaine WordPress doivent être noindex, nofollow
+ * car le frontend public est sur www.yelira.fr (Next.js)
+ */
+function yelira_noindex_wp_subdomain() {
+    // Ajouter la meta tag noindex nofollow sur toutes les pages front du WP
+    echo '<meta name="robots" content="noindex, nofollow">' . "\n";
+}
+add_action('wp_head', 'yelira_noindex_wp_subdomain', 1);
+
+/**
+ * Ajouter aussi le header HTTP X-Robots-Tag pour les ressources non-HTML
+ */
+function yelira_noindex_http_header() {
+    if (!is_admin()) {
+        header('X-Robots-Tag: noindex, nofollow', true);
+    }
+}
+add_action('send_headers', 'yelira_noindex_http_header');
+
+/**
  * Ajouter le schema markup pour les produits
  */
 function yelira_product_schema() {
